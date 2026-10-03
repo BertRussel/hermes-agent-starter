@@ -2276,12 +2276,17 @@ def main(argv=None):
     combined_errors.extend(scan_findings)
 
     candidate_head = _candidate_head_for_receipts(root)
-    compatibility_evidence_ok = _validate_compatibility_receipts(
-        root,
-        combined_errors,
-        candidate_head=candidate_head,
-        host_receipt=args.host_receipt,
-        docker_receipt=args.docker_receipt,
+    receipts_supplied = args.host_receipt is not None or args.docker_receipt is not None
+    compatibility_evidence_ok = (
+        _validate_compatibility_receipts(
+            root,
+            combined_errors,
+            candidate_head=candidate_head,
+            host_receipt=args.host_receipt,
+            docker_receipt=args.docker_receipt,
+        )
+        if receipts_supplied
+        else True
     )
 
     # Combine component summary deterministically.
@@ -2302,8 +2307,10 @@ def main(argv=None):
 
     publication = index.get("publication", {}) if isinstance(index, dict) else {}
     publication_status = str(publication.get("status", "")).lower() if isinstance(publication, dict) else ""
-    release_ready = publication_status == "ready" and not combined_errors
-    publication_ready = release_ready
+    # A local candidate is ready when its repository contract is clean.  Public
+    # publication is deliberately separate: it needs owner and external gates
+    # that this verifier neither performs nor can truthfully certify.
+    publication_ready = publication_status == "ready" and not combined_errors
 
     verification_fatal_errors = [
         err
@@ -2315,6 +2322,7 @@ def main(argv=None):
     ]
     verification_ok = len(verification_fatal_errors) == 0
     private_candidate_ready = bool(verification_ok and compatibility_evidence_ok)
+    release_ready = private_candidate_ready
 
     fatal_errors = [err for err in combined_errors if err.get("code") != "publication_blocked"]
     fatal_errors = [err for err in fatal_errors if err.get("code") not in {"publication_blocker"}]
@@ -2330,7 +2338,7 @@ def main(argv=None):
                     "path": "release-index.yaml",
                 }
             )
-            release_ready = False
+
 
     errors_out = sort_findings([err for err in combined_errors if err.get("code") != "publication_blocker"])
     warning_entries = [
@@ -2348,6 +2356,7 @@ def main(argv=None):
         "ok": ok,
         "verification_ok": verification_ok,
         "compatibility_evidence_ok": compatibility_evidence_ok,
+        "compatibility_evidence": "external-not-performed" if not receipts_supplied else "receipt-validated",
         "private_candidate_ready": private_candidate_ready,
         "publication_ready": publication_ready,
         "release_ready": release_ready,

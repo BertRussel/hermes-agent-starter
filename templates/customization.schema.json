@@ -3,17 +3,14 @@
   "title": "Public starter non-secret customization data",
   "type": "object",
   "additionalProperties": false,
-  "required": ["AGENT_NAME", "OWNER_NAME", "AGENT_PURPOSE", "COMMUNICATION_STYLE", "TIMEZONE", "KNOWLEDGE_ROOT", "MODEL_PROVIDER", "MODEL_ID"],
+  "required": ["OWNER_OR_COMPANY_NAME", "OWNER_FORM_OF_ADDRESS", "AGENT_NAME", "AGENT_INSPIRATION", "AGENT_INSPIRATION_TRAITS", "COMMUNICATION_STYLE", "OPTIONAL_HELP_AND_PROJECTS"],
   "properties": {
+    "OWNER_OR_COMPANY_NAME": {"type": "string", "minLength": 1, "maxLength": 80},
+    "OWNER_FORM_OF_ADDRESS": {"type": "string", "minLength": 1, "maxLength": 80},
     "AGENT_NAME": {"type": "string", "minLength": 1, "maxLength": 80},
-    "AGENT_INSPIRATION": {"type": "string", "minLength": 0, "maxLength": 160, "default": ""},
-    "OWNER_NAME": {"type": "string", "minLength": 1, "maxLength": 80},
-    "AGENT_PURPOSE": {"type": "string", "minLength": 1, "maxLength": 500},
-    "COMMUNICATION_STYLE": {"type": "string", "maxLength": 16, "enum": ["concise", "balanced", "detailed"]},
-    "TIMEZONE": {"type": "string", "minLength": 1, "maxLength": 100},
-    "KNOWLEDGE_ROOT": {"type": "string", "minLength": 2, "maxLength": 4096},
-    "MODEL_PROVIDER": {"type": "string", "maxLength": 32, "enum": ["openrouter"]},
-    "MODEL_ID": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "[A-Za-z0-9][A-Za-z0-9._:/-]*"},
-    "AUTHORITY_POLICY": {"type": "string", "maxLength": 16, "enum": ["local-only"], "default": "local-only"}
+    "AGENT_INSPIRATION": {"type": "string", "minLength": 1, "maxLength": 160},
+    "AGENT_INSPIRATION_TRAITS": {"type": "string", "minLength": 1, "maxLength": 240},
+    "COMMUNICATION_STYLE": {"type": "string", "minLength": 1, "maxLength": 80},
+    "OPTIONAL_HELP_AND_PROJECTS": {"type": "string", "minLength": 0, "maxLength": 500}
   }
 }

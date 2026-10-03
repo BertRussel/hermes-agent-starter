@@ -18,24 +18,20 @@ def validator():
     return module
 
 
-def test_two_unrelated_fictional_identities_have_identical_closed_authority():
+def test_two_unrelated_fictional_identities_validate_as_exact_private_overlay_data():
     module = validator()
     identities = [
-        {"AGENT_NAME": "Mira", "AGENT_INSPIRATION": "", "OWNER_NAME": "Alex",
-         "AGENT_PURPOSE": "Organize a fictional astronomy club", "COMMUNICATION_STYLE": "concise",
-         "TIMEZONE": "UTC", "KNOWLEDGE_ROOT": "/fictional/astronomy-vault",
-         "MODEL_PROVIDER": "openrouter", "MODEL_ID": "example/model"},
-        {"AGENT_NAME": "Rowan", "AGENT_INSPIRATION": "An original patient cartographer",
-         "OWNER_NAME": "Sam", "AGENT_PURPOSE": "Track a fictional community garden",
-         "COMMUNICATION_STYLE": "detailed", "TIMEZONE": "Europe/London",
-         "KNOWLEDGE_ROOT": "/fictional/garden-vault", "MODEL_PROVIDER": "openrouter",
-         "MODEL_ID": "example/model"},
+        {"OWNER_OR_COMPANY_NAME": "Fictional Astronomy Club", "OWNER_FORM_OF_ADDRESS": "Coordinator",
+         "AGENT_NAME": "Mira", "AGENT_INSPIRATION": "original navigator", "AGENT_INSPIRATION_TRAITS": "calm",
+         "COMMUNICATION_STYLE": "concise", "OPTIONAL_HELP_AND_PROJECTS": "fictional astronomy"},
+        {"OWNER_OR_COMPANY_NAME": "Fictional Garden", "OWNER_FORM_OF_ADDRESS": "Steward",
+         "AGENT_NAME": "Rowan", "AGENT_INSPIRATION": "original cartographer", "AGENT_INSPIRATION_TRAITS": "patient",
+         "COMMUNICATION_STYLE": "detailed", "OPTIONAL_HELP_AND_PROJECTS": "fictional garden"},
     ]
     results = [module.validate_customization(value) for value in identities]
     assert [value["AGENT_NAME"] for value in results] == ["Mira", "Rowan"]
-    assert results[0]["AGENT_INSPIRATION"] == ""
-    assert results[0]["AUTHORITY_POLICY"] == results[1]["AUTHORITY_POLICY"] == "local-only"
-    assert identities[0].get("AUTHORITY_POLICY") is None, "validation mutated caller data"
+    assert results[0]["AGENT_INSPIRATION"] == "original navigator"
+    assert results[0] == identities[0], "validation mutated caller data"
 
 
 def test_shipped_examples_validate_without_private_factory_inputs():
@@ -48,9 +44,8 @@ def test_shipped_examples_validate_without_private_factory_inputs():
 @pytest.mark.parametrize("field,value", [
     ("AUTHORITY_POLICY", "administrator"), ("API_KEY", "not-a-credential"),
     ("AGENT_NAME", "${EXECUTE}"), ("AGENT_NAME", "a\nnew directive"),
-    ("AGENT_NAME", "{{tool}}"), ("OWNER_NAME", ""),
-    ("MODEL_ID", "$(command)"), ("TIMEZONE", "Unknown/Timezone"),
-    ("KNOWLEDGE_ROOT", "relative/path"), ("KNOWLEDGE_ROOT", "/private/../vault"),
+    ("AGENT_NAME", "{{tool}}"), ("OWNER_OR_COMPANY_NAME", ""),
+    ("OWNER_FORM_OF_ADDRESS", "$(command)"), ("AGENT_INSPIRATION_TRAITS", "a\nnew directive"),
     ("COMMUNICATION_STYLE", ["concise"]),
 ])
 def test_invalid_or_authority_bearing_customization_is_rejected(field, value):
@@ -60,12 +55,8 @@ def test_invalid_or_authority_bearing_customization_is_rejected(field, value):
         validator().validate_customization(data)
 
 
-def test_private_knowledge_symlink_is_rejected(tmp_path):
+def test_exact_schema_rejects_removed_runtime_and_identity_binding_fields():
     data = json.loads((ROOT / "examples/fictional-personal-assistant/customization.json").read_text())
-    real = tmp_path / "real"
-    real.mkdir()
-    linked = tmp_path / "linked"
-    linked.symlink_to(real, target_is_directory=True)
-    data["KNOWLEDGE_ROOT"] = str(linked / "vault")
-    with pytest.raises(ValueError, match="symlink"):
+    data["KNOWLEDGE_ROOT"] = "/private/vault"
+    with pytest.raises(ValueError, match="unexpected"):
         validator().validate_customization(data)

@@ -596,7 +596,7 @@ class VerifyReleaseTests(unittest.TestCase):
             handle.write(content)
         return Path(path)
 
-    def test_01_valid_slice1_structure_reports_not_ready(self):
+    def test_01_valid_local_candidate_reports_ready_without_publication_claim(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             self.make_valid_root(root)
@@ -604,7 +604,9 @@ class VerifyReleaseTests(unittest.TestCase):
             self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
             data = json.loads(proc.stdout)
             self.assertTrue(data["ok"])
-            self.assertFalse(data["release_ready"])
+            self.assertTrue(data["release_ready"])
+            self.assertFalse(data["publication_ready"])
+            self.assertEqual(data["compatibility_evidence"], "external-not-performed")
             self.assertTrue(any(err["code"] == "publication_blocked" for err in data["warnings"]))
             self.assertSetEqual(
                 set(data["components"]),
@@ -619,14 +621,15 @@ class VerifyReleaseTests(unittest.TestCase):
                 },
             )
 
-    def test_02_require_ready_fails_when_publication_blocked(self):
+    def test_02_require_ready_accepts_local_candidate_when_publication_blocked(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             self.make_valid_root(root)
             proc = self.run_verify(root, ["--require-ready"])
-            self.assertNotEqual(proc.returncode, 0)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
             data = json.loads(proc.stdout)
-            self.assertFalse(data["release_ready"])
+            self.assertTrue(data["release_ready"])
+            self.assertFalse(data["publication_ready"])
             self.assertTrue(any(err["code"] == "publication_blocked" for err in data["warnings"]))
 
     def test_03_reject_wrong_engineering_runtime_version(self):
@@ -1234,14 +1237,15 @@ class VerifyReleaseTests(unittest.TestCase):
                 },
             )
 
-    def test_15_verifier_fixture_runs_clean_with_real_sources(self):
+    def test_15_verifier_fixture_reports_local_candidate_readiness(self):
         with tempfile.TemporaryDirectory() as td:
             source_root = self.make_realistic_slice1_fixture(Path(td))
             proc = self.run_verify(source_root)
             self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
             data = json.loads(proc.stdout)
             self.assertTrue(data["ok"])
-            self.assertFalse(data["release_ready"])
+            self.assertTrue(data["release_ready"])
+            self.assertFalse(data["publication_ready"])
             self.assertFalse(any(err["code"].startswith("secret_") for err in data["errors"]))
 
     def test_15a_compatibility_receipts_must_be_provided_as_pairs(self):

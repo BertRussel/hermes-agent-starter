@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import re
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from pathlib import Path
 
 SCHEMA = Path(__file__).resolve().parents[1] / "templates/customization.schema.json"
 
@@ -29,21 +28,12 @@ def validate_customization(values: dict) -> dict:
             raise ValueError(f"{name}: invalid length")
         if value != value.strip() or any(ord(char) < 32 or ord(char) == 127 for char in value):
             raise ValueError(f"{name}: whitespace/control character")
-        if any(token in value for token in ("{{", "}}", "${", "<%", "%>", "```")):
+        if any(token in value for token in ("{{", "}}", "${", "$(", "<%", "%>", "```")):
             raise ValueError(f"{name}: template delimiter")
         if "enum" in rules and value not in rules["enum"]:
             raise ValueError(f"{name}: unsupported selection")
         if "pattern" in rules and re.fullmatch(rules["pattern"], value) is None:
             raise ValueError(f"{name}: invalid format")
-    try:
-        ZoneInfo(result["TIMEZONE"])
-    except (ValueError, ZoneInfoNotFoundError) as error:
-        raise ValueError("TIMEZONE: unknown identifier") from error
-    root = Path(result["KNOWLEDGE_ROOT"])
-    if not root.is_absolute() or ".." in root.parts or "//" in str(result["KNOWLEDGE_ROOT"]):
-        raise ValueError("KNOWLEDGE_ROOT: expected absolute non-traversing path")
-    if any(path.is_symlink() for path in (root, *root.parents)):
-        raise ValueError("KNOWLEDGE_ROOT: symlink traversal")
     return result
 
 
