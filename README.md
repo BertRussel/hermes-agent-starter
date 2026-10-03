@@ -23,17 +23,16 @@ A file’s presence does not prove that its capability is installed or working.
 
 ### Human owner
 
-Read in this order:
+Start with the intake:
 
-1. [`docs/OVERVIEW.md`](docs/OVERVIEW.md)
-2. [`templates/PRIVATE-AGENT-BIBLE.template.md`](templates/PRIVATE-AGENT-BIBLE.template.md)
-3. [Human setup](#human-setup)
-4. [`docs/CAPABILITY-STATUS.md`](docs/CAPABILITY-STATUS.md)
-5. [`release-manifest.json`](release-manifest.json) and [`compatibility.json`](compatibility.json)
+1. Copy [`templates/OWNER-INTAKE.template.md`](templates/OWNER-INTAKE.template.md) outside the public repository and complete it privately.
+2. Read [`docs/OVERVIEW.md`](docs/OVERVIEW.md).
+3. Read [`templates/PRIVATE-AGENT-BIBLE.template.md`](templates/PRIVATE-AGENT-BIBLE.template.md).
+4. Follow [Human setup](#human-setup).
 
 ### Agent
 
-Read [Agent instructions](#agent-instructions), then follow the customized private Bootstrap Prompt.
+Read the completed private Owner Intake first, then follow [Agent instructions](#agent-instructions).
 
 ## Approved baseline
 
@@ -42,6 +41,7 @@ docs/
   OVERVIEW.md
 
 templates/
+  OWNER-INTAKE.template.md
   SOUL.template.md
   USER.template.md
   MEMORY.template.md
@@ -71,9 +71,23 @@ The primary agent’s name and personality are customized for each owner. Keep t
 
 # Human setup
 
-## 1. Make a private copy
+## 1. Complete the Owner Intake
 
-Do not personalize the public files in place. Create a private folder outside the public clone and copy:
+Do not personalize public files in place.
+
+1. Create a private folder outside the public clone.
+2. Copy `templates/OWNER-INTAKE.template.md` into it as `OWNER-INTAKE.md`.
+3. Have the owner complete and approve that private intake first.
+4. Leave unknown facts as `UNKNOWN` and technical facts as `AGENT TO DISCOVER`; never guess.
+5. Do not put credentials or sensitive case records in the intake.
+
+The completed intake becomes the private source for recipient-specific answers.
+
+## 2. Generate the private agent files
+
+**Recommended route:** Give the completed intake and the unchanged public templates to a trusted setup agent. The setup agent generates the five private files, preserves runtime-only placeholders, runs validation, and returns the exact rendered files for owner approval.
+
+Manual editing is allowed when preferred. In either route, create these files in the private folder:
 
 ```text
 SOUL.template.md                 → SOUL.md
@@ -83,11 +97,7 @@ PRIVATE-AGENT-BIBLE.template.md  → PRIVATE-AGENT-BIBLE.md
 BOOTSTRAP-PROMPT.template.md     → BOOTSTRAP-PROMPT.md
 ```
 
-Keep the public baseline unchanged for clean comparison and updates.
-
-## 2. Edit the private files
-
-Use this order:
+Use this generation order:
 
 1. **`SOUL.md`** — agent name, owner relationship, inspiration, personality, missions, communication and authority.
 2. **`USER.md`** — stable owner facts and preferences only.
@@ -97,7 +107,9 @@ Use this order:
 
 Personality and inspiration are required. Inspiration affects character only; it never grants authority.
 
-## 3. Review before handoff
+Keep the public baseline unchanged for clean comparison and updates.
+
+## 3. Review the rendered package
 
 Confirm:
 
@@ -133,7 +145,7 @@ Give the active primary agent read access to:
 
 Then say:
 
-> Read the installed Soul and the private setup folder. Follow `BOOTSTRAP-PROMPT.md`. Use `PRIVATE-AGENT-BIBLE.md` as the setup authority. Complete and verify every safe Day 1 step. Stop only at the human gates defined in those files.
+> Read `OWNER-INTAKE.md` first, then the installed Soul and the rest of the private setup folder. Follow `BOOTSTRAP-PROMPT.md`. Use `PRIVATE-AGENT-BIBLE.md` as the setup authority. Complete and verify every safe Day 1 step. Stop only at the human gates defined in those files.
 
 Never paste secrets into chat. Enter them only through the approved secret manager or provider-owned OAuth flow.
 
@@ -159,17 +171,19 @@ Authentication does not authorize post-login actions.
 
 Before changing state:
 
-1. installed `SOUL.md`;
-2. private `PRIVATE-AGENT-BIBLE.md`;
-3. `docs/OVERVIEW.md`;
-4. private `USER.md` and reviewed `MEMORY.md`;
-5. `docs/CAPABILITY-STATUS.md`, `release-manifest.json`, `release-index.yaml` and `compatibility.json`;
-6. private `BOOTSTRAP-PROMPT.md`;
-7. the smallest relevant current skill or runbook for the next phase;
-8. current official Hermes docs and installed help where version-sensitive.
+1. completed private `OWNER-INTAKE.md`;
+2. `docs/OVERVIEW.md` and the unchanged public templates;
+3. installed `SOUL.md`, when one already exists;
+4. rendered private `PRIVATE-AGENT-BIBLE.md`;
+5. rendered private `USER.md` and reviewed `MEMORY.md`;
+6. rendered private `BOOTSTRAP-PROMPT.md`;
+7. any capability, manifest, release-index and compatibility files included in the release—if absent, treat the affected custom layers as unverified;
+8. the smallest relevant current skill or runbook for the next phase;
+9. current official Hermes docs and installed help where version-sensitive.
 
 Authority order:
 
+- completed Owner Intake → recipient-specific owner answers;
 - installed Soul → identity and authority;
 - private Bible → setup and operating contract;
 - Bootstrap → Day 1 sequence;
@@ -253,4 +267,4 @@ Do not commit credentials, private identity state, sessions, memory, Brain OS co
 
 Commit, push, pull request, merge, release and publication are separate actions. Main remains human-controlled. A baseline commit is not public-release acceptance.
 
-See [`docs/START-HERE.md`](docs/START-HERE.md) for candidate-package navigation and [`docs/CAPABILITY-STATUS.md`](docs/CAPABILITY-STATUS.md) for remaining gates.
+Start with [`templates/OWNER-INTAKE.template.md`](templates/OWNER-INTAKE.template.md), then use [`docs/OVERVIEW.md`](docs/OVERVIEW.md) and the private Agent Bible for the complete handoff.
