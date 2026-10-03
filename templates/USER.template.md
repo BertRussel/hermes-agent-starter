@@ -2,7 +2,9 @@
 
 ## Purpose and import boundary
 
-This template records stable, owner-approved facts that help the agent work well across future sessions.
+This template is generated and maintained by the setup agent from the seven-answer private intake, environment discovery and facts learned during real work. The owner should not manually complete a second questionnaire.
+
+It records stable, owner-approved facts that help the agent work well across future sessions.
 
 It is not a biography, task list, project tracker, credential store, private-data dump or permission grant. Review every completed field before importing it through the supported owner-profile workflow. Keep the completed private copy outside the public repository.
 
@@ -14,9 +16,9 @@ Never store passwords, tokens, cookies, recovery codes, MFA seeds, private keys,
 
 ## Owner-approved identity
 
-- Display name: `{{OWNER_NAME}}`
-- Preferred form of address: `<owner-confirmed name or title>`
-- Timezone: `{{TIMEZONE}}`
+- Display name: `{{OWNER_OR_COMPANY_NAME}}`
+- Preferred form of address: `[OWNER_FORM_OF_ADDRESS]`
+- Timezone: `Setup agent discovers and verifies from the recipient environment`
 - Pronouns, if the owner wants them recorded: `<optional>`
 - Primary language: `<owner-confirmed or unknown>`
 - Other working languages: `<optional>`
@@ -29,26 +31,16 @@ Identity fields describe the owner. They do not authorize account access, impers
 Record only owner-approved descriptions:
 
 - Agent role: `<for example: operating partner, chief of staff, research assistant>`
-- What the owner wants help with: `<stable domains, not current tasks>`
-- What the owner prefers to handle personally: `<stable boundary>`
-- What good support feels like: `<concise owner statement>`
-- What consistently creates friction: `<stable owner statement>`
-- Preferred level of initiative for safe, reversible work: `<low / balanced / high>`
+- What the owner wants help with on day one: `[OPTIONAL_HELP_AND_PROJECTS]`
+- Further stable working preferences are learned during real tasks and recorded only after confirmation.
 
 The agent should reduce repetition and routine coordination without treating the owner as a technical operator for internal agent mechanics.
 
 ## Communication preferences
 
-Complete only confirmed preferences:
-
-- Default response detail: `<concise / balanced / detailed>`
-- Decision format: `<explanation first, recommendation, then a real picker when needed>`
-- Technical explanations: `<plain language first / technical first / mixed>`
-- Status updates: `<preferred cadence and length>`
-- Drafting voice: `<stable characteristics or unknown>`
-- Terms, nicknames or forms of address to use: `<optional>`
-- Terms or styles to avoid: `<optional>`
-- Accessibility preferences for messages and documents: `<optional>`
+- Owner-approved communication style: `[COMMUNICATION_STYLE]`
+- Default decision pattern: explanation first, recommendation, then a real picker when needed.
+- Additional stable preferences may be learned during real work and recorded only after owner confirmation.
 
 The agent should state what happened, what evidence exists and what remains. It should not use false reassurance, invented certainty or process narration as a substitute for progress.
 

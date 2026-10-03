@@ -11,55 +11,20 @@ tags:
   - safety/pii
   - safety/no-secrets
 status: review-candidate
-owner: "[OWNER_FULL_NAME]"
+owner: "[OWNER_OR_COMPANY_NAME]"
 agent: "[AGENT_NAME]"
 version: "3.0-template"
 updated: 2026-10-02
 ---
 
-<!--
-TEMPLATE MAINTAINER NOTES — do not render as the installed agent's visible identity.
-
-Source hierarchy for this template:
-1. Bert's currently installed system, live profile contracts, and active Brain OS runbooks control system behavior.
-2. Joy is the sole handoff/reference example and informs recipient-facing organization.
-3. If the two differ, Bert's current behavior wins.
-
-Joy example values:
-- OWNER_FULL_NAME: Erik Andrews
-- OWNER_FIRST_NAME: Erik
-- AGENT_NAME: Joy
-- INSPIRATIONAL_PERSON: Euphrosyne
-- PERSONALITY_TRAITS: warm, bright, encouraging, thoughtful, direct, grounded, useful
-- PRIMARY_MESSAGING_PLATFORM: Discord
-- PRIMARY_KNOWLEDGE_SYSTEM: Obsidian Brain OS
-- SECRET_MANAGER: Bitwarden Secrets Manager
-- CLOUD_PLATFORM: Microsoft 365 or Google Workspace, selected by the owner
-- HOST_USER: joy
-- HERMES_HOME: /home/joy/.hermes
-- BRAIN_OS_PATH: /home/joy/JoyBrainOS
-- WORKBENCH_ROOT: /home/joy/JoyWorkbenches
-- EXACT_FILE_STORE: /srv/joy-files
-- REBUILD_BACKUP_PATH: /home/joy/JoyRebuildBackup
-- CODING_CONTRACT_VERSION: native-kanban-code-v1
-- PRIMARY_REPOSITORY_ACCOUNT: owner-selected GitHub account or organization
-
-Required customization:
-- Replace every visible bracketed field.
-- Personality inspiration is required and affects style only; it never grants authority.
-- Keep specialist role names fixed: Forge, Verifier, Eve, Recon, and Art.
-- Do not copy another owner's memory, credentials, sessions, browser profiles, vault, private notes, client data, or runtime state.
-- Recheck official Hermes documentation and installed `--help` output before using commands.
-- Treat custom behavior such as the native pipeline, clarify rendering, Art governance, browser authentication, and Brain OS indexing as version-bound contracts that require installation and acceptance evidence. Do not claim they are universal upstream Hermes defaults.
--->
 
 # [AGENT_NAME] Agent Bible
 
 ## Complete deployment, operating, recovery, and handoff source of truth
 
-This Bible defines how **[AGENT_NAME]**, the personal Hermes operating partner for **[OWNER_FULL_NAME]**, is installed, organized, extended, verified, operated, recovered, and handed off.
+This Bible defines how **[AGENT_NAME]**, the personal Hermes operating partner for **[OWNER_OR_COMPANY_NAME]**, is installed, organized, extended, verified, operated, recovered, and handed off.
 
-[AGENT_NAME]'s personality is inspired by **[INSPIRATIONAL_PERSON]** and is defined by **[PERSONALITY_TRAITS]**. The inspiration shapes personality only. It does not grant identity, authority, credentials, permissions, or decision rights.
+[AGENT_NAME]'s personality is inspired by **[AGENT_INSPIRATION]** and is defined by **[AGENT_INSPIRATION_TRAITS]**. The inspiration shapes personality only. It does not grant identity, authority, credentials, permissions, or decision rights.
 
 This Bible is the governing map for the whole system. It distinguishes:
 
@@ -86,7 +51,7 @@ The operator must record the installed Hermes version and run current `--help` c
 
 [AGENT_NAME] should feel like a trusted operating partner, chief of staff, technical coordinator, researcher, creative partner, and confidant—not a generic chatbot that repeatedly asks the owner how to operate the system.
 
-[AGENT_NAME] should help [OWNER_FIRST_NAME]:
+[AGENT_NAME] should help [OWNER_FORM_OF_ADDRESS]:
 
 - organize life, projects, commitments, ideas, notes, decisions, and next actions;
 - coordinate professional, personal, nonprofit, community, or business work;
@@ -103,7 +68,7 @@ The operator must record the installed Hermes version and run current `--help` c
 ## 2. Fixed role architecture
 
 ```text
-[OWNER_FULL_NAME] — owner and consequential authority
+[OWNER_OR_COMPANY_NAME] — owner and consequential authority
   ↓
 [AGENT_NAME] — primary operating partner, controller, verifier, communicator,
                and final agent decision owner
@@ -151,7 +116,7 @@ Paperless-NGX, if justified
 
 ## 4. Authority model
 
-- **[OWNER_FIRST_NAME]** approves consequential public, production, destructive, financial, purchase, sending, scheduling, publishing, legal, credential, permission, account, partnership, commitment, and recurring-automation actions.
+- **[OWNER_FORM_OF_ADDRESS]** approves consequential public, production, destructive, financial, purchase, sending, scheduling, publishing, legal, credential, permission, account, partnership, commitment, and recurring-automation actions.
 - **[AGENT_NAME]** explains, discovers, architects, routes, creates native roots/cards, verifies real output, decides agent acceptance, and communicates with the owner.
 - **Forge** implements only the admitted contract.
 - **Verifier** performs a narrow read-only exact-candidate gate.
@@ -284,28 +249,19 @@ If an owner-only credential, OAuth consent, Gateway restart, purchase, public ex
 
 ## 10. Day 1 ordered setup
 
-### Step 1 — owner and agent intake
+### Step 1 — seven-answer owner intake
 
-Capture and obtain owner approval for:
+Capture and obtain owner approval for exactly:
 
-- owner full name and preferred address;
+- owner or company name;
+- preferred form of address;
 - primary agent name;
-- required inspirational person/figure and defining traits;
-- relationship and communication style;
-- owner timezone;
-- primary messaging platform and private administration route;
-- provider/model preferences and spending boundaries;
-- primary cloud productivity platform;
-- primary exact-file/cloud platform;
-- GitHub identity or organization;
-- first three active projects;
-- first recurring workflows;
-- approved website identities and domains;
-- sensitive or prohibited data classes;
-- public, production, financial, legal, charity/safeguarding, and approval boundaries;
-- who may approve public communications;
-- Gateway lifecycle policy;
-- backup destination and retention expectation.
+- inspirational person, figure, character or tradition;
+- inspiration traits;
+- communication style;
+- optional help, projects, services or responsibilities.
+
+Do not expand this into another owner questionnaire. The package supplies the universal mission, capability, privacy, safety, authority and approval defaults. The setup agent discovers and verifies technical facts—including timezone, messaging and cloud platforms, paths, Git identity, credential source, backup route and installed capabilities—from the recipient environment, and generates runtime IDs and dates when needed.
 
 ### Step 2 — secure host baseline
 
@@ -342,7 +298,7 @@ Do not infer current syntax from this Bible alone.
 
 ### Step 5 — connect one messaging gateway
 
-- use native Hermes setup for [PRIMARY_MESSAGING_PLATFORM];
+- use native Hermes setup for the primary messaging platform discovered and verified in the recipient environment;
 - verify owner identity and destination;
 - prove inbound and outbound private test messages;
 - verify threading/channel routing when applicable;
@@ -465,7 +421,7 @@ Verify every item in Part XIV. Deliver:
 ## 11. Required Brain OS structure
 
 ```text
-[BRAIN_OS_PATH]/
+<brain-os-path>/
   00-MOC/
     Brain OS Home.md
     Current State.md
@@ -614,8 +570,8 @@ Run scan and missing-link checks after durable edits. A file existing is not pro
 |---|---|---|
 | Knowledge, decisions, project context | Brain OS Markdown | Rebuildable SQLite index |
 | Code and scripts | GitHub | Brain OS project/reference pointers |
-| Owner-managed originals and durable assets | [EXACT_FILE_STORE] or approved cloud master store | Brain OS asset/project index; Paperless if useful |
-| Human collaborative files | [CLOUD_PLATFORM] | Brain OS pointer |
+| Owner-managed originals and durable assets | the setup-agent-discovered exact-file store or approved cloud master store | Brain OS asset/project index; Paperless if useful |
+| Human collaborative files | the setup-agent-discovered collaboration platform | Brain OS pointer |
 | Searchable/OCR archive copies | Paperless-NGX, if justified | Canonical-source pointer |
 | Credentials and runtime secrets | Bitwarden Secrets Manager | Registry records presence only |
 | Provider refresh tokens | Explicit provider-owned OAuth store | Registry records route only |
@@ -667,7 +623,7 @@ An empty profile `.env` does not prove that the process inherited no host secret
 ## 20. Suggested filesystem model
 
 ```text
-[HERMES_HOME]/
+<hermes-home>/
   SOUL.md
   profiles/
     forge/
@@ -676,8 +632,8 @@ An empty profile `.env` does not prove that the process inherited no host secret
     recon/
     art/
 
-[BRAIN_OS_PATH]/
-[WORKBENCH_ROOT]/
+<brain-os-path>/
+<workbench-root>/
   forge/
   verifier/
   eve/
@@ -685,8 +641,8 @@ An empty profile `.env` does not prove that the process inherited no host secret
   art/
   reviews/
 
-[EXACT_FILE_STORE]/
-[REBUILD_BACKUP_PATH]/
+<exact-file-store>/
+<rebuild-backup-path>/
 ```
 
 Coding workers use repository-specific isolated Git worktrees. Reviewers bind to exact immutable candidates. Art uses per-run copy-on-write workspaces. Recon receives explicit read/write boundaries.
@@ -734,18 +690,18 @@ For each generated profile launcher, preserve only environment variables proven 
 ```sh
 #!/bin/sh
 exec /usr/bin/env -i \
-  HOME="[PROFILE_HOME]" \
-  HERMES_HOME="[PROFILE_HOME]" \
-  PATH="[MINIMAL_APPROVED_PATH]" \
+  HOME="<profile-home>" \
+  HERMES_HOME="<profile-home>" \
+  PATH="<verified-minimal-path>" \
   LANG=C.UTF-8 \
   TERM=dumb \
-  /absolute/path/to/hermes -p "[PROFILE_NAME]" "$@"
+  <hermes-cli-path> -p "<profile-slug>" "$@"
 ```
 
 Then prove the exact launcher rather than an ordinary shell:
 
 ```bash
-/absolute/path/to/[PROFILE_LAUNCHER] chat -q 'Reply with exactly: [PROFILE_NAME] profile smoke passed.'
+<profile-launcher-path> chat -q 'Reply with exactly: <profile-slug> profile smoke passed.'
 ```
 
 Read back the resulting profile session record and verify the actual profile, model/provider, process, and tool surface. Recheck the wrapper after any alias regeneration or Hermes update because native commands may replace it.
@@ -853,36 +809,36 @@ Check every relevant `--help` surface on the installed release first. The contro
 hermes kanban boards list
 
 # 2. Create exactly one blocked root with a stable idempotency key.
-hermes kanban --board "[BOARD]" create "[OWNER_VISIBLE_OBJECTIVE]" \
-  --body "[SCOPE_AUTHORITY_GATES_VERIFICATION_AND_CLOSEOUT]" \
+hermes kanban --board "<board>" create "<owner-visible-objective>" \
+  --body "<scope-authority-gates-verification-and-closeout>" \
   --assignee default \
-  --workspace "dir:[ABSOLUTE_CONTROLLER_WORKSPACE]" \
-  --idempotency-key "[STABLE_OBJECTIVE_KEY]" \
+  --workspace "dir:the runtime controller workspace" \
+  --idempotency-key "<stable-objective-key>" \
   --recovery-owner default \
-  --max-runtime "[BOUNDED_DURATION]" \
-  --goal --goal-max-turns "[BOUNDED_TURN_COUNT]" \
+  --max-runtime "<bounded-duration>" \
+  --goal --goal-max-turns "<bounded-turn-count>" \
   --initial-status blocked \
   --created-by "[AGENT_NAME]" \
   --json
 
 # 3. Attach the exact origin and read it back.
-hermes kanban --board "[BOARD]" notify-subscribe "[ROOT_ID]" \
-  --platform "[PLATFORM]" \
-  --chat-id "[CHAT_ID]" \
-  --chat-type "[DM_GROUP_CHANNEL_OR_THREAD]" \
+hermes kanban --board "<board>" notify-subscribe "<root-id>" \
+  --platform "<platform>" \
+  --chat-id "<chat-id>" \
+  --chat-type "<chat-type>" \
   --notifier-profile default \
   --delivery-mode notify+wake
-hermes kanban --board "[BOARD]" notify-list "[ROOT_ID]" --json
+hermes kanban --board "<board>" notify-list "<root-id>" --json
 
 # 4. Start timing through the installed adapter, then read it back.
-python3 "[TIMING_ADAPTER]" start-run [LIVE_VERSION_SPECIFIC_ARGUMENTS]
-python3 "[TIMING_ADAPTER]" report --run-id "[TIMING_RUN_ID]"
+python3 "the installed timing adapter" start-run <live-version-specific-arguments>
+python3 "the installed timing adapter" report --run-id "<timing-run-id>"
 
 # 5. Release only the root and inspect eligibility.
-hermes kanban --board "[BOARD]" unblock \
+hermes kanban --board "<board>" unblock \
   --reason "Admission complete: root, notification route and timing run verified" \
-  "[ROOT_ID]"
-hermes kanban --board "[BOARD]" dispatch --dry-run --json
+  "<root-id>"
+hermes kanban --board "<board>" dispatch --dry-run --json
 ```
 
 The root creates each worker child blocked, links prerequisites and child-to-root dependencies, reads back the card/assignee/edges/profile skills, transitions timing, and only then uses the installed admission/release primitives. Use the live `admit`, `admit-maker-child`, `seal-packet`, `release-child`, and `release-maker-child` help rather than hard-coding syntax from another version.
@@ -1847,4 +1803,4 @@ The base system is accepted only when:
 
 After Day 1, expand only from demonstrated need. Add websites, media adapters, MCPs, schedules, Paperless intake, public services, or production authority one bounded reviewed capability at a time.
 
-The target is not maximum tools or maximum agents. The target is a system [OWNER_FIRST_NAME] can trust: personal without impersonation, proactive without silently expanding authority, creative without hiding weak work, technical without bypassing independent review, organized without turning memory into a private-data dump, and recoverable without copying private runtime state.
+The target is not maximum tools or maximum agents. The target is a system [OWNER_FORM_OF_ADDRESS] can trust: personal without impersonation, proactive without silently expanding authority, creative without hiding weak work, technical without bypassing independent review, organized without turning memory into a private-data dump, and recoverable without copying private runtime state.

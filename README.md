@@ -1,5 +1,13 @@
 # Hermes Agent Starter
 
+## Start with the seven-answer owner form
+
+1. Download and complete the fillable [`templates/OWNER-INTAKE.pdf`](templates/OWNER-INTAKE.pdf) privately.
+2. Use [`templates/OWNER-INTAKE.template.md`](templates/OWNER-INTAKE.template.md) only when a Markdown or accessible text version is preferable.
+3. Give the completed private form and this unchanged starter to the setup agent.
+
+Those seven answers are the **only human onboarding inputs**. The setup agent applies universal defaults, discovers and verifies technical/environmental facts, generates runtime identifiers, and shows the rendered private files to the owner before installation. The optional projects-and-help answer may be blank; the agent can learn needs over time.
+
 A privacy-clean starting point for building an owner-operated Hermes agent with:
 
 - one personalized primary agent;
@@ -25,7 +33,7 @@ A file’s presence does not prove that its capability is installed or working.
 
 Start with the intake:
 
-1. Copy [`templates/OWNER-INTAKE.template.md`](templates/OWNER-INTAKE.template.md) outside the public repository and complete it privately.
+1. Complete the fillable [`templates/OWNER-INTAKE.pdf`](templates/OWNER-INTAKE.pdf) privately, or use the equivalent Markdown fallback.
 2. Read [`docs/OVERVIEW.md`](docs/OVERVIEW.md).
 3. Read [`templates/PRIVATE-AGENT-BIBLE.template.md`](templates/PRIVATE-AGENT-BIBLE.template.md).
 4. Follow [Human setup](#human-setup).
@@ -41,6 +49,7 @@ docs/
   OVERVIEW.md
 
 templates/
+  OWNER-INTAKE.pdf
   OWNER-INTAKE.template.md
   SOUL.template.md
   USER.template.md
@@ -76,12 +85,11 @@ The primary agent’s name and personality are customized for each owner. Keep t
 Do not personalize public files in place.
 
 1. Create a private folder outside the public clone.
-2. Copy `templates/OWNER-INTAKE.template.md` into it as `OWNER-INTAKE.md`.
-3. Have the owner complete and approve that private intake first.
-4. Leave unknown facts as `UNKNOWN` and technical facts as `AGENT TO DISCOVER`; never guess.
-5. Do not put credentials or sensitive case records in the intake.
+2. Copy and complete `templates/OWNER-INTAKE.pdf`, or copy the Markdown fallback as `OWNER-INTAKE.md`.
+3. Have the owner answer and approve the seven fields only.
+4. Do not put credentials or sensitive case records in the intake.
 
-The completed intake becomes the private source for recipient-specific answers.
+The completed intake becomes the private source for the seven owner-specific answers. The setup agent handles universal defaults, technical discovery and runtime-generated values.
 
 ## 2. Generate the private agent files
 
