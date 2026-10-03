@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "candidate-not-publicly-accepted",
+  "native_runtime": {
+    "revision": "3671350025428cde04d9c8852a38e97420c56917",
+    "kind": "custom-compatible-Hermes-snapshot-not-stock-claim",
+    "public_acquisition": "pending-verified-public-source-binding",
+    "required_routes": ["native-profile-distribution", "governed-native-Kanban-admission-release-sealing", "notify+wake", "embedded-Gateway-dispatch", "installed-timing-adapter", "stateless-native-Git-evidence"]
+  },
+  "tested_factory": {"os": "Linux", "architecture": "aarch64", "python": "3.11"},
+  "vault_promotion": {"platform": "Linux", "primitive": "renameat2-RENAME_NOREPLACE", "fallback": "none"},
+  "role_mapping": "profiles/roles.json",
+  "live_inference": "not-exercised",
+  "live_messaging": "not-exercised",
+  "cross_version_migration": "not-exercised",
+  "other_platforms": "require-independent-rebuild-and-acceptance"
+}

@@ -1,0 +1,12 @@
+{
+  "AGENT_NAME": "Mira",
+  "AGENT_INSPIRATION": "",
+  "OWNER_NAME": "Alex",
+  "AGENT_PURPOSE": "Organize a fictional astronomy club",
+  "COMMUNICATION_STYLE": "concise",
+  "TIMEZONE": "UTC",
+  "KNOWLEDGE_ROOT": "/fictional/astronomy-vault",
+  "MODEL_PROVIDER": "openrouter",
+  "MODEL_ID": "example/model",
+  "AUTHORITY_POLICY": "local-only"
+}

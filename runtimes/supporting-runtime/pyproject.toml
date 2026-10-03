@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools==79.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handoff-supporting-runtime"
+version = "0.1.0"
+description = "Local source-cited document and media canaries for a guarded agent handoff"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+  "python-docx==1.2.0",
+  "openpyxl==3.1.5",
+  "reportlab==5.0.1",
+  "pypdf==6.19.0",
+  "pillow==12.3.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

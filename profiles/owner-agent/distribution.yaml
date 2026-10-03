@@ -1,0 +1,9 @@
+name: owner-agent
+version: 0.1.0-dev
+description: Neutral owner profile payload for governance-safe local operation.
+distribution_owned:
+  - README.md
+  - SOUL.md
+  - config.yaml
+  - distribution.yaml
+  - skills

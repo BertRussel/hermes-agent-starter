@@ -27,6 +27,9 @@ The files listed below are the owner-approved baseline. Other scripts, runtimes,
 
 A file’s presence does not prove that its capability is installed or working.
 
+The portable compatibility probe targets publicly obtainable official Hermes;
+when a version is required, it expects it to be exactly `0.20.5`.
+
 ## Start here
 
 ### Human owner

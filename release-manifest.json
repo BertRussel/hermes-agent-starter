@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "blocked",
+  "product": "generic-public-agent-starter",
+  "source_history": "fresh-positive-allowlist-export-only",
+  "components": [
+    {"id": "original-starter", "disposition": "sanitize", "public_rights": "original-source-review-required", "license": "MIT-approved-for-original-starter-only", "files": []},
+    {"id": "hermes-runtime", "disposition": "sanitize", "public_rights": "upstream-MIT-notice-retained-public-acquisition-pending", "license": "MIT", "files": []},
+    {"id": "creative-studio-vector", "disposition": "replace-required", "public_rights": "private-transfer-not-public-redistribution", "license": "Proprietary", "files": []},
+    {"id": "timing", "disposition": "rights-verification-required", "public_rights": "unresolved", "license": "unresolved", "files": []},
+    {"id": "stateless-git-evidence", "disposition": "rights-verification-required", "public_rights": "unresolved-controller-source", "license": "unresolved", "files": []},
+    {"id": "design-qa-reference", "disposition": "carry-unchanged", "public_rights": "verified-upstream", "license": "owner-authorized-verbatim-public-reference-sharing; no license grant for linked code", "provenance": "Owner-approved public-safe Design and QA Starter Pack for AI Agents, 2026-10-02; unchanged source verified by SHA256", "source_sha256": "a7df5f0a447b9919b03f90113b6809db27d063f04bc4363bb091dd375cf092f9", "files": ["docs/references/design-and-qa-starter-pack.md"]},
+    {"id": "knowledge-organization-reference", "disposition": "carry-unchanged", "public_rights": "verified-upstream", "license": "owner-authorized-verbatim-public-reference-sharing", "provenance": "Owner-approved public-safe Obsidian and Brain OS Organization Starter Pack for AI Agents, 2026-10-02; unchanged source verified by SHA256", "source_sha256": "c64d458461952da762ebaba27315900cfdf9b5da6075ffc699e7beaafddeae07", "files": ["docs/references/obsidian-and-brain-os-starter-pack.md"]}
+  ],
+  "remaining_gates": [
+    "guarded-generic-instruction-seeds-and-operational-role-contracts",
+    "public-reproducible-runtime-and-extension-source-bindings",
+    "verified-legal-required-creative-implementation-route",
+    "complete-exact-file-public-export-inventory-and-all-byte-privacy",
+    "true-version-update-rollback-preserving-private-identity-memory-vault",
+    "real-admitted-engineering-loop-recovery-timing-and-same-head-independent-reviews",
+    "independent-clean-public-payload-onboarding-and-Bible-accuracy",
+    "owner-only-real-model-messaging-and-target-acceptance",
+    "foreground-exact-byte-publication-readback-and-fresh-download"
+  ]
+}

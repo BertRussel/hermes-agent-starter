@@ -1,0 +1,12 @@
+{
+  "AGENT_NAME": "Rowan",
+  "AGENT_INSPIRATION": "An original patient cartographer",
+  "OWNER_NAME": "Sam",
+  "AGENT_PURPOSE": "Track a fictional community garden",
+  "COMMUNICATION_STYLE": "detailed",
+  "TIMEZONE": "Europe/London",
+  "KNOWLEDGE_ROOT": "/fictional/garden-vault",
+  "MODEL_PROVIDER": "openrouter",
+  "MODEL_ID": "example/model",
+  "AUTHORITY_POLICY": "local-only"
+}

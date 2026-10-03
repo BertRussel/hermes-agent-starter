@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "release_status": "private_candidate",
+  "components": [
+    {"name": "owner-agent", "path": "profiles/owner-agent", "version": "0.1.0-dev", "status": "candidate"},
+    {"name": "art", "path": "profiles/art", "version": "0.1.0-dev", "status": "candidate"},
+    {"name": "recon", "path": "profiles/recon", "version": "0.1.0-dev", "status": "candidate"},
+    {"name": "forge", "path": "profiles/forge", "version": "0.1.0-dev", "status": "candidate"},
+
+    {"name": "eve", "path": "profiles/eve", "version": "0.1.0-dev", "status": "candidate"},
+    {"name": "engineering-runtime", "path": "runtimes/engineering-runtime", "version": "0.1.0-dev", "status": "ready"},
+    {"name": "art-runtime", "path": "runtimes/art-runtime", "version": "0.1.0-dev", "status": "ready"}
+  ],
+  "generic_native_profiles": {
+    "status": "candidate-not-accepted",
+    "mapping": "profiles/roles.json",
+    "paths": ["profiles/owner-agent", "profiles/forge", "profiles/bert-verifier", "profiles/eve", "profiles/recon", "profiles/art"],
+    "legacy_components": "preserved Slice 1 contract; not the generic six-role coverage authority"
+  },
+  "public_references": [
+    {"path": "docs/references/design-and-qa-starter-pack.md", "sha256": "a7df5f0a447b9919b03f90113b6809db27d063f04bc4363bb091dd375cf092f9", "status": "owner-authorized-unchanged-reference"},
+    {"path": "docs/references/obsidian-and-brain-os-starter-pack.md", "sha256": "c64d458461952da762ebaba27315900cfdf9b5da6075ffc699e7beaafddeae07", "status": "owner-authorized-unchanged-reference"}
+  ],
+  "compatibility": {"hermes_requirement": "pending", "policy": {"accepted": {"version": "0.20.5", "receipt_types": ["host", "docker"], "evidence": "external"}}},
+  "publication": {"status": "blocked", "blockers": ["license", "owner_publication_approval", "independent_review", "provenance", "native_installation", "clean_host_canaries"]},
+  "blockers": {"license": "unresolved", "owner_publication_approval": "required", "independent_review": "evidence_required", "provenance": "evidence_required", "native_installation": "evidence_required", "clean_host_canaries": "evidence_required"}
+}

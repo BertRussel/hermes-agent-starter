@@ -1,0 +1,9 @@
+name: forge
+version: 0.1.0-dev
+description: Forge profile payload for authoring, release prep, and candidate verification.
+distribution_owned:
+  - README.md
+  - SOUL.md
+  - config.yaml
+  - distribution.yaml
+  - skills

@@ -1,0 +1,12 @@
+name: engineering-runtime
+version: 0.1.0-dev
+description: Core engineering-runtime scaffold for Slice 4B runtime contracts.
+python_requires: >=3.11
+dependencies: []
+stdlib_only: true
+owned_files:
+  - README.md
+  - runtime.yaml
+  - src/engineering_runtime/__init__.py
+  - src/engineering_runtime/runtime.py
+publication_authority: none

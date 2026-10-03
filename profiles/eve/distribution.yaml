@@ -1,0 +1,9 @@
+name: eve
+version: 0.1.0-dev
+description: Eve profile payload for runtime orchestration and control-plane operations.
+distribution_owned:
+  - README.md
+  - SOUL.md
+  - config.yaml
+  - distribution.yaml
+  - skills
