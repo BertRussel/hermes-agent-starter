@@ -56,20 +56,16 @@ def test_restore_rejects_traversal_before_creating_destination(tmp_path):
         member.size = 1
         output.addfile(member, io.BytesIO(b"x"))
     destination = tmp_path / "restore"
-    with pytest.raises(ValueError, match="unsafe"):
+    with pytest.raises(ValueError, match="completeness"):
         package.restore_archive(archive, destination)
     assert not destination.exists()
 
 
-def test_source_rules_exclude_tests_private_fixtures_and_history():
+def test_public_package_has_no_factory_source_selection_or_bindings():
     package = implementation()
-    assert package.selected("studio", "src/art_studio/controller.py")
-    assert package.selected("vector", "src/art_vector/cli.py")
-    for path in ("tests/test_cli.py", "src/art_vector/private_fixture.py", ".git/config", "docs/history.md"):
-        assert not package.selected("vector", path)
-    assert package.selected("hermes", "tools/kanban.py")
-    assert not package.selected("hermes", "tests/tools/test_kanban.py")
-    assert not package.selected("hermes", "SOUL.md")
+    assert not hasattr(package, "SOURCE_BINDINGS")
+    assert not hasattr(package, "read_source_objects")
+    assert package.scan_bytes("candidate.txt", b"SOURCE_BINDINGS") == ["private_marker"]
 
 
 def test_restore_rejects_symlinked_destination_ancestor(tmp_path):
@@ -87,21 +83,17 @@ def test_restore_rejects_symlinked_destination_ancestor(tmp_path):
     assert not (real / "restore").exists()
 
 
-def test_source_selection_keeps_runtime_catalogs_but_excludes_protected_instructions():
+def test_archive_scan_requires_hash_bound_protected_instructions():
     package = implementation()
-    assert package.selected("hermes", "skills/pdf/SKILL.md")
-    assert package.selected("hermes", "optional-mcps/catalog/server.json")
-    assert not package.selected("hermes", "plugins/example/SOUL.md")
-    assert not package.selected("hermes", "skills/example/AGENTS.md")
+    assert package.scan_bytes("skills/pdf/SKILL.md", b"public skill") == []
+    assert package.scan_bytes("profiles/example/SOUL.md", b"public role") == ["forbidden_path"]
 
 
-def test_exact_object_reader_rejects_unbound_source_before_running_git(monkeypatch):
-    package = implementation()
-    calls = []
-    monkeypatch.setattr("subprocess.run", lambda *args, **kwargs: calls.append(args))
-    with pytest.raises(ValueError, match="source binding"):
-        package.read_source_objects("hermes", Path("/unapproved"), "0" * 40)
-    assert calls == []
+def test_package_entrypoint_accepts_only_explicit_bundle_source():
+    body = (ROOT / "scripts/full_system_package.py").read_text(encoding="utf-8")
+    assert "def accept_full_system(bundle_source" in body
+    assert "bundle_source.resolve()" in body
+    assert "private_source\": \"not-read\"" in body
 
 
 def test_byte_scan_catches_identity_paths_and_actual_secret_shapes():
@@ -145,78 +137,20 @@ def test_canonical_acceptance_uses_full_system_not_historical_git_bundle():
     assert "scripts/build_handoff.py" not in body
 
 
-def test_full_system_acceptance_rejects_output_escape_before_source_reads(tmp_path, monkeypatch):
+def test_full_system_acceptance_refuses_unattributed_disposable_directory(tmp_path):
     package = implementation()
-    calls = []
-    monkeypatch.setattr(package, "read_source_objects", lambda *args: calls.append(args))
     destination = tmp_path / "outside"
-    with pytest.raises(ValueError, match="proof boundary"):
-        package.accept_full_system(Path(package.SOURCE_BINDINGS["hermes"][0]), destination, tmp_path / "fixture")
-    assert calls == []
-    assert not destination.exists()
+    destination.mkdir()
+    with pytest.raises(ValueError, match="unattributable"):
+        package.accept_full_system(ROOT, destination, tmp_path / "fixture")
 
 
-@pytest.mark.parametrize("recipient_adapted", [False, True], ids=["actual-baseline-stalls", "recipient-fix-resolves"])
-def test_actual_discord_callback_resolves_backend_before_stalled_message_edit(monkeypatch, recipient_adapted):
+def test_public_package_receipt_declares_nonperformance_of_external_actions(tmp_path):
     package = implementation()
-    repository, commit = package.SOURCE_BINDINGS["hermes"]
-    source_objects = package.read_source_objects("hermes", Path(repository), commit)
-    source = source_objects["plugins/platforms/discord/adapter.py"]
-    if recipient_adapted:
-        source, _ = package.adapt_source("hermes", "plugins/platforms/discord/adapter.py", source)
-    tree = ast.parse(source)
-    classes = {node.name: node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)}
-    selected = ast.Module(body=[ast.ImportFrom(module="__future__", names=[ast.alias(name="annotations")], level=0),
-                                classes["_HermesView"], classes["ClarifyChoiceView"]], type_ignores=[])
-
-    class View:
-        def __init__(self, **kwargs):
-            self.children = []
-
-        def add_item(self, child):
-            self.children.append(child)
-
-    discord = SimpleNamespace(ui=SimpleNamespace(View=View, Button=lambda **kwargs: SimpleNamespace(**kwargs)),
-                              ButtonStyle=SimpleNamespace(primary=1, secondary=2),
-                              Color=SimpleNamespace(green=lambda: 1))
-    namespace = {"discord": discord, "_read_discord_prompt_timeout": lambda: 900,
-                 "_component_check_auth": lambda interaction, users, roles: str(interaction.user.id) in users,
-                 "logger": logging.getLogger("clarify-factory")}
-    exec(compile(ast.fix_missing_locations(selected), "recipient-discord-views", "exec"), namespace)
-    # Actual production queue, not a parallel test model; no live auth or transport.
-    queue = ModuleType("tools.clarify_gateway")
-    monkeypatch.setitem(sys.modules, queue.__name__, queue)
-    exec(compile(source_objects["tools/clarify_gateway.py"], "production-clarify-queue", "exec"), queue.__dict__)
-    tools = ModuleType("tools")
-    setattr(tools, "clarify_gateway", queue)
-    monkeypatch.setitem(sys.modules, "tools", tools)
-
-    async def exercise():
-        canonical = "Keep the existing owner identity and all customizations"
-        entry = queue.register("causal-factory", "isolated-session", "Choose", [canonical])
-        entered, release = asyncio.Event(), asyncio.Event()
-
-        async def edit(**kwargs):
-            entered.set()
-            await release.wait()
-
-        view = namespace["ClarifyChoiceView"](["short display label"], entry.clarify_id, {"42"})
-        interaction = SimpleNamespace(user=SimpleNamespace(id="42", display_name="Recipient"), message=None,
-                                      response=SimpleNamespace(edit_message=edit))
-        task = asyncio.create_task(view._resolve_choice(interaction, 0, "short display label"))
-        try:
-            await asyncio.wait_for(entered.wait(), 1)
-            assert not task.done(), "test did not causally hold the Discord edit"
-            assert entry.event.is_set() == recipient_adapted, "causal baseline/fix distinction was lost"
-            if recipient_adapted:
-                assert entry.response == canonical
-                assert not queue.resolve_gateway_clarify(entry.clarify_id, "duplicate")
-        finally:
-            release.set()
-            await task
-            queue.clear_session("isolated-session")
-
-    asyncio.run(exercise())
+    receipt = package.accept_full_system(ROOT, tmp_path / "output", tmp_path / "fixture")
+    assert receipt["publication"] == "not-performed"
+    assert receipt["external_accounts_credentials_production_gateway"] == "not-performed"
+    assert receipt["private_source"] == "not-read"
 
 
 def test_six_role_inventory_is_installable_without_live_exports():
@@ -238,90 +172,38 @@ def test_profile_resource_selection_does_not_copy_protected_instructions():
     assert any(name.endswith("/SKILL.md") for name in resources)
 
 
-def test_instruction_sources_are_never_transformed_by_recipient_adapter():
+def test_instruction_bytes_require_exact_hash_binding():
     package = implementation()
-    original = b'retain Nick as the only creative approver'
-    for component in ('studio', 'vector'):
-        adapted, transformations = package.adapt_source(
-            component, 'skills/art-logo-vector-production/SKILL.md', original)
-        assert adapted == original
-        assert transformations == []
+    source = ROOT / "profiles/forge"
+    bound = {"SOUL.md": package.digest((source / "SOUL.md").read_bytes())}
+    assert package.archive_scan("SOUL.md", (source / "SOUL.md").read_bytes(), bound) == []
 
 
-def test_proprietary_runtime_selection_excludes_instruction_skills():
+def test_package_explicitly_excludes_proprietary_runtime_selection():
+    source = (ROOT / "scripts/full_system_package.py").read_text(encoding="utf-8")
+    assert "art_studio" not in source and "art_vector" not in source
+
+
+def test_public_profile_canary_is_limited_to_supported_six_role_distribution_api():
     package = implementation()
-    for component in ('studio', 'vector'):
-        assert not package.selected(component, 'skills/art-logo-vector-production/SKILL.md')
-        assert package.selected(component, 'pyproject.toml')
+    canary = package.native_profile_canary()
+    assert "install_distribution" in canary
+    assert "owner-agent" in canary and "bert-verifier" in canary
+    assert "activated':False" in canary
+    assert "passed-distribution-metadata-and-readme" in canary
 
 
-def test_native_home_canary_proves_supported_schema_migration_and_full_restore(tmp_path):
-    import subprocess
-    script = ROOT / 'scripts/native_operations_canary.py'
-    assert script.is_file(), 'native home migration/backup/restore entrypoint missing'
+def test_profile_resource_inventory_rejects_unexpected_distribution_content(tmp_path):
     package = implementation()
-    runtime = tmp_path / 'runtime'
-    runtime.mkdir()
-    for name in ('home', 'tmp'):
-        (runtime / name).mkdir()
-    extracted = tmp_path / 'extracted-hermes'
-    repository, commit = package.SOURCE_BINDINGS['hermes']
-    for name, data in package.read_source_objects('hermes', Path(repository), commit).items():
-        target = extracted / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(data)
-    environment = package.isolated_environment(runtime)
-    environment['PYTHONPATH'] = str(extracted)
-    result = subprocess.run([sys.executable, '-B', str(script),
-                             str(ROOT / 'profiles/forge/SOUL.md')],
-                            cwd=runtime, env=environment,
-                            capture_output=True, text=True, timeout=90)
-    assert result.returncode == 0, result.stdout + result.stderr
-    receipt = json.loads(result.stdout.splitlines()[-1])
-    assert receipt['schema_migration']['status'] == 'passed'
-    assert receipt['schema_migration']['from'] < receipt['schema_migration']['to']
-    assert receipt['schema_migration']['deprecated_key_removed'] is True
-    assert receipt['full_home_restore'] == 'passed'
-    assert receipt['rollback'] == 'passed-pre-migration-backup'
-    assert receipt['identity_memory_vault_preserved'] is True
-    assert receipt['malformed_config_refused'] is True
-    assert receipt['unsupported_schema_refused'] is True
-    assert receipt['gateway_lifecycle'] == 'not-invoked'
-    assert receipt['external_vault_recovery']['status'] == 'passed-native-member-restore'
-    assert receipt['external_vault_recovery']['members'] == 3
-    assert receipt['external_vault_recovery']['traversal_refused'] is True
-    assert receipt['external_vault_recovery']['symlink_refused'] is True
-    assert receipt['external_vault_recovery']['exact_byte_parity'] is True
-
-
-def test_native_pipeline_entrypoint_exercises_real_fences_without_launch(tmp_path):
-    import subprocess
-    script = ROOT / 'scripts/native_pipeline_canary.py'
-    assert script.is_file(), 'native primitive pipeline entrypoint missing'
-    package = implementation()
-    extracted = tmp_path / 'hermes'
-    repository, commit = package.SOURCE_BINDINGS['hermes']
-    for name, data in package.read_source_objects('hermes', Path(repository), commit).items():
-        target = extracted / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(data)
-    runtime = tmp_path / 'runtime'
-    runtime.mkdir()
-    for name in ('home', 'tmp'):
-        (runtime / name).mkdir()
-    environment = package.isolated_environment(runtime)
-    environment['PYTHONPATH'] = str(extracted)
-    result = subprocess.run([sys.executable, '-B', str(script)], cwd=runtime,
-                            env=environment, capture_output=True, text=True, timeout=90)
-    assert result.returncode == 0, result.stdout + result.stderr
-    receipt = json.loads(result.stdout.splitlines()[-1])
-    assert receipt['native_dependencies'] == 'passed'
-    assert receipt['notification_readback'] == 'passed-exact-notify+wake'
-    assert receipt['unadmitted_release_refused'] is True
-    assert receipt['review_dependency_fence'] is True
-    assert receipt['dependency_resume'] == 'passed'
-    assert receipt['named_worker_launches'] == 0
-    assert receipt['governed_end_to_end'] == 'root-owned-pending'
+    root = tmp_path / "candidate"
+    for role in package.PROFILES:
+        profile = root / "profiles" / role
+        profile.mkdir(parents=True)
+        (profile / "distribution.yaml").write_text("name: fictional\n")
+        (profile / "README.md").write_text("fictional\n")
+    (root / "profiles" / "forge" / "private.txt").write_text("not distributable\n")
+    with pytest.raises(ValueError, match="unexpected"):
+        package.installable_profile_resources(root)
 
 
 def test_neutral_export_runs_component_ci_without_factory_home(tmp_path):
@@ -411,7 +293,7 @@ def test_public_runtime_acquisition_refuses_ambient_or_unpinned_sources(tmp_path
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    commit = implementation().SOURCE_BINDINGS['hermes'][1]
+    commit = '2237be355906fbe6065ce1815711eee52b2d646e'
     binding = {'url': 'https://github.com/NousResearch/hermes-agent.git', 'commit': commit}
     assert module.validate_binding(binding) == binding
     for invalid in (dict(binding, commit='main'), dict(binding, commit='0' * 39),
@@ -535,21 +417,12 @@ def test_public_acquisition_never_replaces_a_raced_destination(tmp_path, monkeyp
     assert destination.is_dir() and list(destination.iterdir()) == []
 
 
-def test_canonical_inventory_binds_every_selected_byte_and_preserves_rights_gates():
-    package = implementation()
-    assert callable(getattr(package, 'export_disposition_inventory', None)), 'canonical disposition inventory missing'
-    source = {name: {'file.txt': b'Fictional selected bytes'} for name in
-              ('hermes', 'studio', 'vector', 'timing', 'evidence', 'supporting',
-               'profile-distributions', 'knowledge', 'generic-foundation')}
-    receipt = package.export_disposition_inventory(source)
-    assert receipt['public_export_authorized'] is False
-    assert receipt['selected_files'] == 9
-    assert set(receipt['components']) == set(source)
-    for name in source:
-        assert receipt['components'][name]['files'][0]['sha256'] == package.digest(b'Fictional selected bytes')
-        assert receipt['components'][name]['public_gate'] != 'passed'
-    assert receipt['components']['studio']['public_rights'] == 'private-transfer-not-public-redistribution'
-    assert 'geometric' in receipt['components']['supporting']['capability_limits']
+def test_public_runtime_binding_is_official_pinned_and_credential_free():
+    from scripts import public_runtime as runtime
+    binding = {'url': runtime.OFFICIAL_URL,
+               'commit': '2237be355906fbe6065ce1815711eee52b2d646e'}
+    assert runtime.validate_binding(binding) == binding
+    assert runtime.OFFICIAL_URL == 'https://github.com/NousResearch/hermes-agent.git'
 
 
 def test_public_acquisition_timeout_is_redacted_and_never_uses_private_fallback(tmp_path, monkeypatch):
@@ -566,23 +439,12 @@ def test_public_acquisition_timeout_is_redacted_and_never_uses_private_fallback(
     assert not (tmp_path / 'source').exists()
 
 
-def test_disposable_timing_runs_real_start_pause_resume_and_failure_closeout(tmp_path):
+def test_acceptance_receipt_has_no_worker_or_gateway_side_effects(tmp_path):
     package = implementation()
-    assert callable(getattr(package, 'timing_primitive_canary', None)), 'executable timing primitive canary missing'
-    source = tmp_path / 'timing'
-    repository, commit = package.SOURCE_BINDINGS['timing']
-    for name, original in package.read_source_objects('timing', Path(repository), commit).items():
-        data, _ = package.adapt_source('timing', name, original)
-        target = source / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(data)
-    result = package.timing_primitive_canary(source)
-    assert result['status'] == 'passed-native-timing-primitives'
-    assert result['premature_success_refused'] is True
-    assert result['pause_resume'] == 'passed'
-    assert result['terminal'] == 'failed-fixture-not-acceptance'
-    assert result['named_worker_launches'] == 0
-    assert len(result['journal_sha256']) == 64
+    receipt = package.accept_full_system(ROOT, tmp_path / 'output', tmp_path / 'fixture')
+    assert receipt['delegate_task'] == 0
+    assert receipt['async_delegations'] == 0
+    assert receipt['external_accounts_credentials_production_gateway'] == 'not-performed'
 
 
 def test_owner_approved_design_reference_is_exact_discoverable_and_allowlisted(tmp_path):
@@ -610,8 +472,9 @@ def test_owner_approved_design_reference_is_exact_discoverable_and_allowlisted(t
     assert export.selected_files(reference_manifest) == [relative]
     assert export.read_member(root, relative) == content
     export.scan(relative, content)
-    package = implementation()
-    assert package.PUBLIC_REFERENCE_FILES[relative] == hashlib.sha256(content).hexdigest()
+    index = json.loads((root / 'release-index.yaml').read_text())
+    references = {item['path']: item['sha256'] for item in index['public_references']}
+    assert references[relative] == hashlib.sha256(content).hexdigest()
 
 
 def test_obsidian_pack_is_exact_linked_and_starter_has_real_control_notes():
@@ -630,10 +493,11 @@ def test_obsidian_pack_is_exact_linked_and_starter_has_real_control_notes():
     manifest = json.loads((ROOT / 'release-manifest.json').read_text())
     component = next(item for item in manifest['components'] if item['id'] == 'knowledge-organization-reference')
     assert component['files'] == [relative] and component['disposition'] == 'carry-unchanged'
-    assert implementation().PUBLIC_REFERENCE_FILES[relative] == export.sha256(content)
+    index = json.loads((ROOT / 'release-index.yaml').read_text())
+    references = {item['path']: item['sha256'] for item in index['public_references']}
+    assert references[relative] == export.sha256(content)
     for note in (ROOT / 'brain-os-starter').rglob('*.md'):
         assert re.search(rb'\b(?:Grant|Bo|Joy|Erik|Nick|Bert)\b|Par 4|/home/ubuntu/', note.read_bytes()) is None
     index = json.loads((ROOT / 'release-index.yaml').read_text())
     assert set(index['generic_native_profiles']['paths']) == {'profiles/' + role for role in implementation().PROFILES}
-    references = {item['path']: item['sha256'] for item in index['public_references']}
-    assert references == implementation().PUBLIC_REFERENCE_FILES
+    assert references[relative] == export.sha256(content)

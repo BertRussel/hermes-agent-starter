@@ -20,7 +20,12 @@ import subprocess
 import tarfile
 import uuid
 
-from scripts.create_brain_os import open_directory
+try:
+    from scripts.create_brain_os import open_directory
+except ModuleNotFoundError as error:
+    if error.name != "scripts":
+        raise
+    from create_brain_os import open_directory
 
 FORBIDDEN = {'.git', '.env', 'auth.json', 'sessions', 'memories', 'logs', 'cache',
              '__pycache__', 'node_modules', 'controller-only', '.full-system-proof', '.full-system-fixture'}

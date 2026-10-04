@@ -60,15 +60,30 @@ def fixture_manifest(name='README.md'):
                             'public_rights': 'verified-original', 'license': 'MIT', 'files': [name]}]}
 
 
-def test_unresolved_actual_release_refuses_export_before_source_reads(tmp_path, monkeypatch):
+def test_unresolved_manifest_refuses_export_before_source_reads(tmp_path, monkeypatch):
     module = exporter()
     calls = []
     monkeypatch.setattr(module, 'read_member', lambda *args: calls.append(args))
-    manifest = json.loads((ROOT / 'release-manifest.json').read_text())
+    manifest = fixture_manifest()
+    manifest['status'] = 'rights-pending'
     with pytest.raises(ValueError, match='disposition incomplete'):
         module.build_public_export(ROOT, manifest, tmp_path / 'bad.tar.gz')
     assert calls == []
     assert not (tmp_path / 'bad.tar.gz').exists()
+
+
+def test_accepted_actual_release_manifest_exports(tmp_path):
+    module = exporter()
+    manifest = json.loads((ROOT / 'release-manifest.json').read_text())
+    archive = tmp_path / 'public-starter.tar.gz'
+    digest = module.build_public_export(ROOT, manifest, archive)
+    assert digest == module.sha256(archive.read_bytes())
+    with tarfile.open(archive) as exported:
+        assert {member.name for member in exported} >= {
+            'public-agent-starter/manifest.json',
+            'public-agent-starter/brain-os-starter/README.md',
+            'public-agent-starter/profiles/roles.json',
+        }
 
 
 @pytest.mark.parametrize('name', ['.git/history', 'docs/internal/controller-only/proposal.txt',
