@@ -19,8 +19,9 @@ A privacy-clean starting point for building an owner-operated Hermes agent with:
 
 This repository contains **baseline source files and operating contracts**. It is not a credential bundle, a copy of another person’s agent or a one-command production installer.
 
-See [`docs/SOURCE-INVENTORY.md`](docs/SOURCE-INVENTORY.md) for the positive public
-source boundary, browsable component map, and deterministic optional archive contract.
+See [`source-inventory.json`](source-inventory.json) for the exact public Git-file
+inventory and [`docs/SOURCE-INVENTORY.md`](docs/SOURCE-INVENTORY.md) for the
+browsable component map and deterministic optional archive contract.
 
 ## Status
 

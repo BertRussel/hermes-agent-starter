@@ -12,9 +12,13 @@ import gzip
 import hashlib
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import subprocess
 import tarfile
+
+
+INVENTORY_PATH = "source-inventory.json"
+INVENTORY_KEYS = {"schema_version", "purpose", "files"}
 
 
 def git(root: Path, *args: str) -> bytes:
@@ -49,6 +53,48 @@ def tree_members(root: Path, source_ref: str) -> tuple[str, str, list[tuple[str,
     return head, tree, members
 
 
+def load_source_inventory(root: Path, source_ref: str) -> dict:
+    try:
+        inventory = json.loads(git(root, "show", f"{source_ref}:{INVENTORY_PATH}"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise ValueError("invalid source inventory") from exc
+    return inventory
+
+
+def validate_source_inventory(inventory: dict, member_paths: list[str]) -> None:
+    if not isinstance(inventory, dict) or set(inventory) != INVENTORY_KEYS:
+        raise ValueError("invalid source inventory schema")
+    if inventory["schema_version"] != 1 or inventory["purpose"] != "exact-public-source-tree":
+        raise ValueError("invalid source inventory schema")
+    files = inventory["files"]
+    if not isinstance(files, list) or not files:
+        raise ValueError("invalid source inventory files")
+
+    normalized: list[str] = []
+    for path in files:
+        if not isinstance(path, str) or not path or "\\" in path:
+            raise ValueError("invalid source inventory path")
+        parsed = PurePosixPath(path)
+        if parsed.is_absolute() or any(part in {"", ".", ".."} for part in parsed.parts):
+            raise ValueError("invalid source inventory path")
+        if path.startswith(".git/") or path.startswith("docs/internal/controller-only/"):
+            raise ValueError("private path in source inventory")
+        normalized.append(path)
+    if len(normalized) != len(set(normalized)):
+        raise ValueError("duplicate source inventory path")
+    if INVENTORY_PATH not in normalized:
+        raise ValueError("source inventory must include itself")
+
+    tree_set = set(member_paths)
+    inventory_set = set(normalized)
+    omitted = sorted(tree_set - inventory_set)
+    extra = sorted(inventory_set - tree_set)
+    if omitted or extra:
+        raise ValueError(
+            f"source inventory mismatch: omitted={omitted!r}; extra={extra!r}"
+        )
+
+
 def write_archive(members: list[tuple[str, str, bytes]], output: Path) -> str:
     with output.open("xb") as raw:
         with gzip.GzipFile(fileobj=raw, mode="wb", filename="", mtime=0) as zipped:
@@ -74,6 +120,8 @@ def main(argv: list[str] | None = None) -> int:
     if output.exists() or output.is_symlink():
         raise ValueError("archive output must not already exist")
     head, tree, members = tree_members(root, args.source_ref)
+    inventory = load_source_inventory(root, args.source_ref)
+    validate_source_inventory(inventory, [path for path, _mode, _data in members])
     digest = write_archive(members, output)
     print(json.dumps({
         "ok": True,

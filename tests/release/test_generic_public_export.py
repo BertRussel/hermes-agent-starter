@@ -20,6 +20,15 @@ def exporter():
     return module
 
 
+def source_archive_verifier():
+    path = ROOT / 'scripts/verify_source_archive_parity.py'
+    spec = importlib.util.spec_from_file_location('verify_source_archive_parity', path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def test_exact_allowlisted_export_is_reproducible_and_history_free(tmp_path):
     module = exporter()
     source = tmp_path / 'source'
@@ -90,8 +99,41 @@ def test_archive_parity_tool_and_inventory_are_browsable_public_source():
     """The committed public tree documents and verifies its own archive boundary."""
     assert (ROOT / 'scripts' / 'verify_source_archive_parity.py').is_file()
     assert (ROOT / 'docs' / 'SOURCE-INVENTORY.md').is_file()
+    assert (ROOT / 'source-inventory.json').is_file()
     readme = (ROOT / 'README.md').read_text(encoding='utf-8')
     assert 'docs/SOURCE-INVENTORY.md' in readme
+
+
+def test_source_inventory_rejects_omitted_and_extra_members():
+    module = source_archive_verifier()
+    exact = {
+        'schema_version': 1,
+        'purpose': 'exact-public-source-tree',
+        'files': ['README.md', 'source-inventory.json'],
+    }
+    module.validate_source_inventory(exact, exact['files'])
+    with pytest.raises(ValueError, match='source inventory mismatch'):
+        module.validate_source_inventory(exact, exact['files'] + ['extra.md'])
+    with pytest.raises(ValueError, match='source inventory mismatch'):
+        module.validate_source_inventory(
+            {**exact, 'files': exact['files'] + ['not-in-tree.md']}, exact['files']
+        )
+
+
+def test_source_inventory_rejects_duplicates_and_private_paths():
+    module = source_archive_verifier()
+    with pytest.raises(ValueError, match='duplicate source inventory path'):
+        module.validate_source_inventory(
+            {'schema_version': 1, 'purpose': 'exact-public-source-tree',
+             'files': ['source-inventory.json', 'source-inventory.json']},
+            ['source-inventory.json'],
+        )
+    with pytest.raises(ValueError, match='private path in source inventory'):
+        module.validate_source_inventory(
+            {'schema_version': 1, 'purpose': 'exact-public-source-tree',
+             'files': ['source-inventory.json', 'docs/internal/controller-only/secret.json']},
+            ['source-inventory.json', 'docs/internal/controller-only/secret.json'],
+        )
 
 
 @pytest.mark.parametrize('name', ['.git/history', 'docs/internal/controller-only/proposal.txt',

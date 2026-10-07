@@ -1,9 +1,14 @@
 # Public source inventory
 
 This repository is a browsable source starter, not an installation image or a
-private-agent export. The positive inventory is `release-manifest.json`: every
-archive member must be an ordinary tracked source file declared there. No file
-is public merely because it exists in a checkout.
+private-agent export. The positive repository inventory is
+`source-inventory.json`: every archive member must be an ordinary tracked
+source file declared there, and every declared file must exist in the exact Git
+tree. No file is public merely because it exists in a checkout.
+
+`release-manifest.json` has a separate purpose: it declares the smaller set of
+files used by the install/public-export package and records component rights.
+It is not the complete Git source-tree inventory.
 
 ## Navigation
 
@@ -22,7 +27,10 @@ is public merely because it exists in a checkout.
 not the local worktree, and writes a deterministic optional archive. It refuses
 Git metadata and `docs/internal/controller-only/`. Archive member bytes come
 from the exact tree blobs; timestamps and ownership metadata are normalized.
-The command reports the exact head, tree, member count, and SHA-256.
+Before writing any archive, it requires `source-inventory.json` to match the
+tree exactly and rejects omitted files, extra entries, duplicates, unsupported
+members, and private/controller paths. The command reports the exact head,
+tree, member count, and SHA-256.
 
 The PDF owner-intake template is the sole approved binary source asset. Its
 hash is pinned by the release tests; it is not rewritten by the archive tool.
