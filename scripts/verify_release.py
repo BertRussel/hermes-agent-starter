@@ -206,6 +206,7 @@ EXPECTED_TOP_LEVEL_ENTRIES = {
     "examples",
     "release-index.yaml",
     "release-manifest.json",
+    "source-inventory.json",
     "PROVENANCE.md",
     "brain-os-starter",
     "docs",
