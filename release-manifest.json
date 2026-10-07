@@ -3,6 +3,7 @@
   "status": "public-candidate",
   "product": "generic-public-agent-starter",
   "source_history": "fresh-positive-allowlist-export-only",
+
   "components": [
     {
       "id": "original-starter",

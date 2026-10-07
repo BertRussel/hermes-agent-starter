@@ -86,6 +86,14 @@ def test_accepted_actual_release_manifest_exports(tmp_path):
         }
 
 
+def test_archive_parity_tool_and_inventory_are_browsable_public_source():
+    """The committed public tree documents and verifies its own archive boundary."""
+    assert (ROOT / 'scripts' / 'verify_source_archive_parity.py').is_file()
+    assert (ROOT / 'docs' / 'SOURCE-INVENTORY.md').is_file()
+    readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+    assert 'docs/SOURCE-INVENTORY.md' in readme
+
+
 @pytest.mark.parametrize('name', ['.git/history', 'docs/internal/controller-only/proposal.txt',
                                   '../escape', '/absolute/file', 'auth.json', 'state.db',
                                   '.full-system-proof/receipt.json'])

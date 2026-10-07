@@ -2050,12 +2050,15 @@ def collect_scans(root: Path, deny_terms, errors):
         current = Path(raw_path)
         rel_root = current.relative_to(root)
 
-        if rel_root == Path(".git"):
+        if rel_root == Path(".git") or rel_root == Path("docs/internal/controller-only"):
             dirnames[:] = []
             continue
 
         # Skip nested .git metadata trees.
-        dirnames[:] = [d for d in dirnames if d != ".git"]
+        dirnames[:] = [
+            d for d in dirnames
+            if d != ".git" and (rel_root / d) != Path("docs/internal/controller-only")
+        ]
 
         for dirname in list(dirnames):
             subdir = current / dirname
