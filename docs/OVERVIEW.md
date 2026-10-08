@@ -294,17 +294,17 @@ Unresolved owner fields block installation acceptance. Placeholder removal alone
 
 ## Primary package files
 
-- `templates/SOUL.template.md`
-- `templates/USER.template.md`
-- `templates/MEMORY.template.md`
-- `templates/PRIVATE-AGENT-BIBLE.template.md`
-- `templates/BOOTSTRAP-PROMPT.template.md`
+- `docs/templates/SOUL.template.md`
+- `docs/templates/USER.template.md`
+- `docs/templates/MEMORY.template.md`
+- `docs/templates/PRIVATE-AGENT-BIBLE.template.md`
+- `docs/templates/BOOTSTRAP-PROMPT.template.md`
 - `docs/OVERVIEW.md`
 - `docs/START-HERE.md`
 - `docs/CAPABILITY-STATUS.md`
 - `profiles/owner-agent/`
 - `profiles/forge/`
-- `profiles/bert-verifier/`
+- `profiles/verifier/`
 - `profiles/eve/`
 - `profiles/recon/`
 - `profiles/art/`

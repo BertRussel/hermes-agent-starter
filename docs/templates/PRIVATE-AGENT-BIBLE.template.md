@@ -334,7 +334,7 @@ Create blank profiles named:
 
 ```text
 forge
-bert-verifier
+verifier
 eve
 recon
 art
@@ -627,7 +627,7 @@ An empty profile `.env` does not prove that the process inherited no host secret
   SOUL.md
   profiles/
     forge/
-    bert-verifier/
+    verifier/
     eve/
     recon/
     art/
@@ -679,7 +679,7 @@ Create each specialist from blank:
 
 ```bash
 hermes profile create forge --description "Bounded implementation worker for admitted native coding contracts."
-hermes profile create bert-verifier --description "Read-only exact-candidate verification gate before independent review."
+hermes profile create verifier --description "Read-only exact-candidate verification gate before independent review."
 hermes profile create eve --description "Independent immutable-candidate engineering reviewer."
 hermes profile create recon --description "Source-backed research, counter-evidence, and decision packets."
 hermes profile create art --description "Governed visual production with separate Designer and Critic sessions."
@@ -1554,16 +1554,16 @@ This ledger prevents documentation from masquerading as installed runtime.
 The reusable package should bind this Bible to concrete companion artifacts. The expected source-tree roles are:
 
 ```text
-templates/SOUL.template.md
-templates/USER.template.md
-templates/MEMORY.template.md
-templates/PRIVATE-AGENT-BIBLE.template.md
-templates/customization.schema.json
+docs/templates/SOUL.template.md
+docs/templates/USER.template.md
+docs/templates/MEMORY.template.md
+docs/templates/PRIVATE-AGENT-BIBLE.template.md
+docs/templates/customization.schema.json
   owner-neutral identity and stable-fact inputs
 
 profiles/owner-agent/
 profiles/forge/
-profiles/bert-verifier/
+profiles/verifier/
 profiles/eve/
 profiles/recon/
 profiles/art/

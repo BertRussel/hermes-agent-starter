@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "status": "public-candidate",
+  "product": "generic-public-agent-starter",
+  "source_history": "fresh-positive-allowlist-export-only",
+
+  "components": [
+    {
+      "id": "original-starter",
+      "disposition": "carry-unchanged",
+      "public_rights": "verified-original",
+      "license": "MIT",
+      "files": [
+        "brain-os-starter/00-MOC/Agent Profiles MOC.md",
+        "brain-os-starter/00-MOC/Current State.md",
+        "brain-os-starter/00-MOC/Home.md",
+        "brain-os-starter/00-MOC/Task List Hub.md",
+        "brain-os-starter/02-Development/Decision-Journal/Decision Journal Index.md",
+        "brain-os-starter/02-Development/Projects/Fictional Garden.md",
+        "brain-os-starter/02-Development/Projects/Project Registry.md",
+        "brain-os-starter/03-Research/Research Index.md",
+        "brain-os-starter/05-Reference/Procedures/Filing and Maintenance.md",
+        "brain-os-starter/05-Reference/Procedures/Storage Operations Hub.md",
+        "brain-os-starter/05-Reference/Reference Index.md",
+        "brain-os-starter/06-Inbox/Inbox.md",
+        "brain-os-starter/06-Inbox/README.md",
+        "brain-os-starter/README.md"
+      ]
+    },
+    {
+      "id": "six-public-profile-distributions",
+      "disposition": "carry-unchanged",
+      "public_rights": "verified-original",
+      "license": "MIT",
+      "files": [
+        "profiles/art/README.md",
+        "profiles/art/SOUL.md",
+        "profiles/art/config.yaml",
+        "profiles/art/distribution.yaml",
+        "profiles/art/skills/creative-production-contract/SKILL.md",
+        "profiles/verifier/README.md",
+        "profiles/verifier/SOUL.md",
+        "profiles/verifier/config.yaml",
+        "profiles/verifier/distribution.yaml",
+        "profiles/verifier/skills/exact-candidate-verification/SKILL.md",
+        "profiles/eve/README.md",
+        "profiles/eve/SOUL.md",
+        "profiles/eve/config.yaml",
+        "profiles/eve/distribution.yaml",
+        "profiles/eve/skills/independent-review-contract/SKILL.md",
+        "profiles/forge/README.md",
+        "profiles/forge/SOUL.md",
+        "profiles/forge/config.yaml",
+        "profiles/forge/distribution.yaml",
+        "profiles/forge/skills/bounded-implementation-contract/SKILL.md",
+        "profiles/owner-agent/README.md",
+        "profiles/owner-agent/SOUL.md",
+        "profiles/owner-agent/config.yaml",
+        "profiles/owner-agent/distribution.yaml",
+        "profiles/owner-agent/skills/client-agent-operations/SKILL.md",
+        "profiles/recon/README.md",
+        "profiles/recon/SOUL.md",
+        "profiles/recon/config.yaml",
+        "profiles/recon/distribution.yaml",
+        "profiles/recon/skills/research-assurance-contract/SKILL.md",
+        "profiles/roles.json"
+      ]
+    },
+    {
+      "id": "hermes-runtime-binding",
+      "disposition": "carry-unchanged",
+      "public_rights": "verified-upstream",
+      "license": "MIT",
+      "upstream": {
+        "url": "https://github.com/NousResearch/hermes-agent.git",
+        "annotated_tag": "v2026.9.7",
+        "tag_object": "9949d0d324a3a06ac238e01dd1c2103dbca09900",
+        "dereferenced_commit": "2237be355906fbe6065ce1815711eee52b2d646e",
+        "notice": "MIT License, Copyright (c) 2025 Nous Research"
+      },
+      "files": ["scripts/public_runtime.py"]
+    },
+    {
+      "id": "design-qa-reference",
+      "disposition": "carry-unchanged",
+      "public_rights": "verified-upstream",
+      "license": "owner-authorized-verbatim-public-reference-sharing; no license grant for linked code",
+      "provenance": "Owner-approved public-safe Design and QA Starter Pack for AI Agents, 2026-10-02; unchanged source verified by SHA256",
+      "source_sha256": "a7df5f0a447b9919b03f90113b6809db27d063f04bc4363bb091dd375cf092f9",
+      "files": ["docs/references/design-and-qa-starter-pack.md"]
+    },
+    {
+      "id": "knowledge-organization-reference",
+      "disposition": "carry-unchanged",
+      "public_rights": "verified-upstream",
+      "license": "owner-authorized-verbatim-public-reference-sharing",
+      "provenance": "Owner-approved public-safe Obsidian and Brain OS Organization Starter Pack for AI Agents, 2026-10-02; unchanged source verified by SHA256",
+      "source_sha256": "c64d458461952da762ebaba27315900cfdf9b5da6075ffc699e7beaafddeae07",
+      "files": ["docs/references/obsidian-and-brain-os-starter-pack.md"]
+    }
+  ],
+  "excluded": {
+    "private_factory_bindings": "not included or read",
+    "private_adaptation_apis": "not included or read",
+    "publication": "not performed"
+  }
+}

@@ -1,0 +1,9 @@
+name: art
+version: 0.1.0-dev
+description: Art profile runtime payload and content-safe local operation defaults.
+distribution_owned:
+  - README.md
+  - SOUL.md
+  - config.yaml
+  - distribution.yaml
+  - skills

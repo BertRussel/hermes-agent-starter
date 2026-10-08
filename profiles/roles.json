@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "native_assignees": {
+    "owner-agent": "owner-agent",
+    "implementer": "forge",
+    "verifier": "verifier",
+    "reviewer": "eve",
+    "researcher": "recon",
+    "designer": "art"
+  }
+}

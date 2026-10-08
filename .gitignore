@@ -1,0 +1,7 @@
+# Attributable private acceptance outputs; never source or recipient payloads.
+/.full-system-fixture/
+/.full-system-proof/
+/docs/internal/controller-only/
+__pycache__/
+.pytest_cache/
+*.pyc

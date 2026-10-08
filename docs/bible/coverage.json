@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "operational_acceptance": "pending-independent-onboarding-trial",
+  "chapters": [
+    {"id": 1, "path": "bible/01-system.md", "gate": "public/private architecture and component disposition"},
+    {"id": 2, "path": "bible/02-setup-choice.md", "gate": "platform/resource and optional capability decision"},
+    {"id": 3, "path": "bible/03-installation.md", "gate": "fresh extracted-byte native install"},
+    {"id": 4, "path": "bible/04-models.md", "gate": "owner-only real model and credential route"},
+    {"id": 5, "path": "bible/05-identity.md", "gate": "two rendered private identities and blank inspiration"},
+    {"id": 6, "path": "bible/06-security.md", "gate": "authority negatives and protected guards"},
+    {"id": 7, "path": "bible/07-knowledge.md", "gate": "no-replace/race/symlink/relocation and real vault access"},
+    {"id": 8, "path": "bible/08-continuity.md", "gate": "fresh-session knowledge and skill discovery"},
+    {"id": 9, "path": "bible/09-profiles.md", "gate": "six-role native mapping and operational contracts"},
+    {"id": 10, "path": "bible/10-intake.md", "gate": "authority packet and genuine clarify semantics"},
+    {"id": 11, "path": "bible/11-native-lifecycle.md", "gate": "real admitted dependency loop/recovery"},
+    {"id": 12, "path": "bible/12-implementation.md", "gate": "causal RED/GREEN and exact native evidence"},
+    {"id": 13, "path": "bible/13-review.md", "gate": "same-head verifier PASS then dependent reviewer"},
+    {"id": 14, "path": "bible/14-timing.md", "gate": "immutable transitions and actual delegation audit"},
+    {"id": 15, "path": "bible/15-research.md", "gate": "source-grounded findings and filing"},
+    {"id": 16, "path": "bible/16-creative.md", "gate": "legal creative route and actual render/visual QA"},
+    {"id": 17, "path": "bible/17-messaging.md", "gate": "live owner-only authorized messaging and attachments"},
+    {"id": 18, "path": "bible/18-integrations.md", "gate": "rebuild/canary and integration scope"},
+    {"id": 19, "path": "bible/19-automation.md", "gate": "native schedule idempotency/failure/delivery"},
+    {"id": 20, "path": "bible/20-daily.md", "gate": "observable task/status/pause/continuation"},
+    {"id": 21, "path": "bible/21-handoff.md", "gate": "clean independent released-docs onboarding"},
+    {"id": 22, "path": "bible/22-updates.md", "gate": "true version update/restore/rollback preserving private state"},
+    {"id": 23, "path": "bible/23-troubleshooting.md", "gate": "actual intentional failure and supported recovery"},
+    {"id": 24, "path": "bible/24-maintainers.md", "gate": "legal privacy-clean source/export/history and release"},
+    {"id": 25, "path": "bible/25-reference.md", "gate": "link/command/schema and independent accuracy review"}
+  ]
+}

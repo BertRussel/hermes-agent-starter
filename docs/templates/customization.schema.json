@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public starter non-secret customization data",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["OWNER_OR_COMPANY_NAME", "OWNER_FORM_OF_ADDRESS", "AGENT_NAME", "AGENT_INSPIRATION", "AGENT_INSPIRATION_TRAITS", "COMMUNICATION_STYLE", "OPTIONAL_HELP_AND_PROJECTS"],
+  "properties": {
+    "OWNER_OR_COMPANY_NAME": {"type": "string", "minLength": 1, "maxLength": 80},
+    "OWNER_FORM_OF_ADDRESS": {"type": "string", "minLength": 1, "maxLength": 80},
+    "AGENT_NAME": {"type": "string", "minLength": 1, "maxLength": 80},
+    "AGENT_INSPIRATION": {"type": "string", "minLength": 1, "maxLength": 160},
+    "AGENT_INSPIRATION_TRAITS": {"type": "string", "minLength": 1, "maxLength": 240},
+    "COMMUNICATION_STYLE": {"type": "string", "minLength": 1, "maxLength": 80},
+    "OPTIONAL_HELP_AND_PROJECTS": {"type": "string", "minLength": 0, "maxLength": 500}
+  }
+}

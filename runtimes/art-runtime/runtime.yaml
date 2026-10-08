@@ -1,0 +1,12 @@
+name: art-runtime
+version: 0.1.0-dev
+description: Pure-stdlib validator runtime for Art candidate job and manifest contracts.
+python_requires: ">=3.11"
+dependencies: []
+stdlib_only: true
+owned_files:
+  - README.md
+  - runtime.yaml
+  - src/art_runtime/__init__.py
+  - src/art_runtime/runtime.py
+publication_authority: none

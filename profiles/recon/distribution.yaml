@@ -1,0 +1,9 @@
+name: recon
+version: 0.1.0-dev
+description: Recon profile payload for defensive analysis and local-only tools.
+distribution_owned:
+  - README.md
+  - SOUL.md
+  - config.yaml
+  - distribution.yaml
+  - skills

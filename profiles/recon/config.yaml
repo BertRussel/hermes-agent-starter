@@ -1,0 +1,24 @@
+terminal:
+  home_mode: profile
+  auto_source_bashrc: false
+  shell_init_files: []
+memory:
+  memory_enabled: false
+  user_profile_enabled: false
+skills:
+  write_approval: true
+tools:
+ enabled:
+ - file
+ - terminal
+ - todo
+ - web
+ - browser
+ - vision
+plugins:
+  enabled: []
+mcp: {}
+cron:
+  enabled: false
+gateway:
+  dispatch_enabled: false
