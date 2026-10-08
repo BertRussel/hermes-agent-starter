@@ -4,13 +4,13 @@
 Owner-agent is owner-facing. Implementer writes bounded candidate code; verifier reproduces exact-byte evidence; reviewer assesses the same bytes after verifier PASS; researcher grounds findings; designer produces creative candidates. None of the specialist roles owns final public/production acceptance.
 
 ## Prerequisites and version
-Six canonical native distributions exist under owner-agent, forge, bert-verifier, eve, recon and art. Public names map explicitly; do not rename native assignees by cosmetic preference. Config isolation does not provide OS sandboxing.
+Six canonical native distributions exist under owner-agent, forge, verifier, eve, recon and art. Public names map explicitly; do not rename native assignees without updating the complete routing and acceptance contract. Config isolation does not provide OS sandboxing.
 
 ## Inputs
 Each assignment needs immutable outcome/scope, source inputs, allowed paths/commands, prohibited actions, model/tool/resource policy, outputs and stop conditions. Reviewers additionally require exact head/tree/artifact identity.
 
 ## Procedure
-Use the [mapping](../../profiles/roles.json): implementer→forge, verifier→bert-verifier, reviewer→eve, researcher→recon, designer→art. Install each canonical distribution only once. Route implementation through an isolated worktree; bind formal reviews to frozen source. Research findings and design drafts remain proposals until controller verification. Verifier, reviewer and creative critic never delegate their attributable verdicts. Maker/research leaf help is optional, bounded, non-overlapping and not an impersonation of a named profile. Keep specialists' messaging, scheduler, auth and persistent owner memory disabled by default. Do not activate jobs or aliases from a source archive.
+Use the [mapping](../../profiles/roles.json): implementer→forge, verifier→verifier, reviewer→eve, researcher→recon, designer→art. Install each canonical distribution only once. Route implementation through an isolated worktree; bind formal reviews to frozen source. Research findings and design drafts remain proposals until controller verification. Verifier, reviewer and creative critic never delegate their attributable verdicts. Maker/research leaf help is optional, bounded, non-overlapping and not an impersonation of a named profile. Keep specialists' messaging, scheduler, auth and persistent owner memory disabled by default. Do not activate jobs or aliases from a source archive.
 
 ## Expected results
 Six installable profiles have distinct ingress, source ownership and output contracts, with preserved native routing. No specialist self-approves its own implementation.

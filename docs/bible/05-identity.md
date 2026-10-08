@@ -25,4 +25,4 @@ Reject unexpected keys, delimiter abuse, controls, invalid timezone/path or unsu
 Private forms/rendered seeds never enter public source, archives or history. Never bulk-import memory through an invented command.
 
 ## Sources
-[Variables](../../templates/VARIABLES.md), [schema](../../templates/customization.schema.json), [tests](../../tests/release/test_generic_customization.py), [memory](08-continuity.md).
+[Variables](../templates/VARIABLES.md), [schema](../templates/customization.schema.json), [tests](../../tests/release/test_generic_customization.py), [memory](08-continuity.md).

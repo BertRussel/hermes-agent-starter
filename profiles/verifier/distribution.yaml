@@ -1,4 +1,4 @@
-name: bert-verifier
+name: verifier
 version: 0.1.0-dev
 description: Exact-candidate independent deterministic verification.
 hermes_requires: '>=0.21.2'

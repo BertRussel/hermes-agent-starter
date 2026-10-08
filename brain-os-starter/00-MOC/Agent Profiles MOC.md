@@ -6,7 +6,7 @@ Navigation only: these are intended responsibilities, not installed/tested capab
 | --- | --- | --- | --- |
 | owner-agent | owner-agent | project decisions and owner-facing status | owner approval controls consequential actions |
 | implementer | forge | project implementation/evidence | bounded source scope; no self-acceptance or public push |
-| verifier | bert-verifier | immutable verification evidence | read-only; no edits or successor launch |
+| verifier | verifier | immutable verification evidence | read-only; no edits or successor launch |
 | reviewer | eve | independent same-head verdict | read-only; after verifier PASS; no final decision |
 | researcher | recon | cited synthesis and Research Index | no implementation or contact without authority |
 | designer | art | editable candidates and rendered evidence | independent Maker/Critic; owner creative approval |

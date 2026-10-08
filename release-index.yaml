@@ -14,7 +14,7 @@
   "generic_native_profiles": {
     "status": "candidate-not-accepted",
     "mapping": "profiles/roles.json",
-    "paths": ["profiles/owner-agent", "profiles/forge", "profiles/bert-verifier", "profiles/eve", "profiles/recon", "profiles/art"],
+    "paths": ["profiles/owner-agent", "profiles/forge", "profiles/verifier", "profiles/eve", "profiles/recon", "profiles/art"],
     "legacy_components": "preserved Slice 1 contract; not the generic six-role coverage authority"
   },
   "public_references": [

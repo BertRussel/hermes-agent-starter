@@ -23,10 +23,9 @@ profile instructions, custom skills, accounts, memory or existing vault.
 Owner Agent is the existing primary identity, not a new replacement persona.
 Forge is implementation owner. Independent Verifier checks the immutable
 candidate; Eve reviews the same bytes after Verifier PASS; Recon supplies
-research; Art supplies creative work. The canonical `bert-verifier` native
-assignee identifier is retained for compatibility and displayed as Independent
-Verifier. Renaming it requires a separately reviewed mapping throughout the
-controller, manifests and task contracts; a cosmetic rename is unsafe.
+research; Art supplies creative work. The canonical `verifier` native
+assignee is owner-neutral. Its profile, manifests, tests, routing, and task
+contracts must always move together; a cosmetic-only rename is unsafe.
 
 Leaf analysis helpers are not any of those named authority profiles.
 

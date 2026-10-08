@@ -28,7 +28,7 @@ The recipient Discord adaptation must resolve the backend before attempting a po
 
 ## 4. Six selected roles and one workflow
 
-owner-agent coordinates owner intent and final decisions; forge implements; bert-verifier independently reproduces exact-candidate evidence; eve independently reviews after verifier PASS; recon produces source-backed research; art produces creative artifacts. Role names are compatible native routing identifiers, not a claim of original-owner identity. Do not silently rename an assignee while keeping its old admission contract. Each role has its own distribution manifest, minimal safe configuration and curated skill. Profiles are not OS security sandboxes.
+owner-agent coordinates owner intent and final decisions; forge implements; verifier independently reproduces exact-candidate evidence; eve independently reviews after verifier PASS; recon produces source-backed research; art produces creative artifacts. Role names are compatible native routing identifiers, not a claim of original-owner identity. Do not silently rename an assignee while keeping its old admission contract. Each role has its own distribution manifest, minimal safe configuration and curated skill. Profiles are not OS security sandboxes.
 
 The current native pipeline is: owner-ready packet → blocked root → exact originating notify+wake subscription/readback → installed timing start/readback → root release. Create children blocked and dependency-linked before admission/release. The embedded Gateway dispatcher alone launches named workers. No direct wrappers, generic delegates impersonating named profiles, sidecar roots, separate dispatcher or duplicate scheduler.
 

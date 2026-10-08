@@ -19,7 +19,7 @@ It is not the complete Git source-tree inventory.
 - `profiles/` contains generic role distributions and their readable contracts.
 - `runtimes/`, `runtime-bundle/`, `scripts/`, and `tests/` contain the supporting source,
   explicit boundaries, and deterministic checks.
-- `templates/` is public input scaffolding. Keep a completed owner intake outside this tree.
+- `docs/templates/` contains public rendering inputs. `docs/OWNER-INTAKE.md` and `docs/OWNER-INTAKE.pdf` are the owner-facing forms. Keep every completed owner intake outside this tree.
 
 ## Archive boundary
 

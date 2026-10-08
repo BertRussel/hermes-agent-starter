@@ -10,7 +10,7 @@ Commands are scoped to the accepted runtime version/platform. Current source is 
 Capability status, schemas, canonical role mapping, source notices and tested command table.
 
 ## Procedure
-Use [customization schema](../../templates/customization.schema.json) for non-secret fields and [variables](../../templates/VARIABLES.md) for validation/privacy limits. Use [role mapping](../../profiles/roles.json) for native assignees. Use [coverage](coverage.json) and [command matrix](../COMMAND-MATRIX.md) to locate exact source/test evidence. Read the relevant Bible chapter and installed skill rather than loading the entire manual into Soul. For official Hermes features, consult the current authoritative documentation and actual native help, not remembered command spelling.
+Use [customization schema](../templates/customization.schema.json) for non-secret fields and [variables](../templates/VARIABLES.md) for validation/privacy limits. Use [role mapping](../../profiles/roles.json) for native assignees. Use [coverage](coverage.json) and [command matrix](../COMMAND-MATRIX.md) to locate exact source/test evidence. Read the relevant Bible chapter and installed skill rather than loading the entire manual into Soul. For official Hermes features, consult the current authoritative documentation and actual native help, not remembered command spelling.
 
 ## Expected results
 A new owner can trace each command/capability to source, tested version and remaining gate. Terms are consistent: candidate=unaccepted bytes; frozen=immutable reviewed input; installed=file/runtime placement; connected=verified external route; delivered=verified target receipt; owner-accepted=explicit final owner confirmation.

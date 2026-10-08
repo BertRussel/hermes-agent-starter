@@ -59,5 +59,5 @@ def test_role_mapping_is_neutral_and_one_to_one():
     assert set(mapping) == {'owner-agent', 'implementer', 'verifier', 'reviewer', 'researcher', 'designer'}
     assert len(mapping.values()) == len(set(mapping.values()))
     assert mapping['implementer'] == 'forge'
-    assert mapping['verifier'] == 'bert-verifier'
+    assert mapping['verifier'] == 'verifier'
     assert mapping['reviewer'] == 'eve'

@@ -3,7 +3,7 @@
   "native_assignees": {
     "owner-agent": "owner-agent",
     "implementer": "forge",
-    "verifier": "bert-verifier",
+    "verifier": "verifier",
     "reviewer": "eve",
     "researcher": "recon",
     "designer": "art"

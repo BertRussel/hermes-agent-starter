@@ -155,7 +155,7 @@ def test_public_package_receipt_declares_nonperformance_of_external_actions(tmp_
 
 def test_six_role_inventory_is_installable_without_live_exports():
     package = implementation()
-    assert set(package.PROFILES) == {"owner-agent", "forge", "bert-verifier", "eve", "recon", "art"}
+    assert set(package.PROFILES) == {"owner-agent", "forge", "verifier", "eve", "recon", "art"}
     for role in package.PROFILES:
         root = ROOT / "profiles" / role
         assert (root / "distribution.yaml").is_file(), role
@@ -188,7 +188,7 @@ def test_public_profile_canary_is_limited_to_supported_six_role_distribution_api
     package = implementation()
     canary = package.native_profile_canary()
     assert "install_distribution" in canary
-    assert "owner-agent" in canary and "bert-verifier" in canary
+    assert "owner-agent" in canary and "verifier" in canary
     assert "activated':False" in canary
     assert "passed-distribution-metadata-and-readme" in canary
 

@@ -18,7 +18,7 @@ def test_public_roles_bind_one_canonical_distribution_each():
     path = ROOT / "profiles/roles.json"
     assert path.is_file(), "public/native role mapping is missing"
     mapping = json.loads(path.read_text())
-    expected = {"owner-agent": "owner-agent", "implementer": "forge", "verifier": "bert-verifier",
+    expected = {"owner-agent": "owner-agent", "implementer": "forge", "verifier": "verifier",
                 "reviewer": "eve", "researcher": "recon", "designer": "art"}
     assert mapping == {"schema_version": 1, "native_assignees": expected}
     inventory = package().installable_profile_resources(ROOT)

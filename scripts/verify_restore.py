@@ -5,7 +5,7 @@ import argparse, hashlib, json, pathlib, shutil, tarfile
 
 EXPECTED_BUNDLE_SHA256 = "b7a051213c00caaa64c6274658d1edd6a9dd7511413dac5edea9a7d31bed1bae"
 EXPECTED_BUNDLE_SIZE = 484042497
-PROFILES = ("primary", "forge", "bert-verifier", "eve")
+PROFILES = ("primary", "forge", "verifier", "eve")
 
 def sha256(path: pathlib.Path) -> str:
     digest = hashlib.sha256()

@@ -7,7 +7,7 @@ EXPECTED_BUNDLE_SHA256 = "b7a051213c00caaa64c6274658d1edd6a9dd7511413dac5edea9a7
 EXPECTED_BUNDLE_SIZE = 484042497
 EXPECTED_HEAD = "7d01f6ddf39b1e07647edd9fe3004c4a215fd314"
 EXPECTED_BASE = "c6f87deb2c38d75518c793790f1cc9afa37f0695"
-PROFILES = ("primary", "forge", "bert-verifier", "eve")
+PROFILES = ("primary", "forge", "verifier", "eve")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def sha256(path: pathlib.Path) -> str:
@@ -49,7 +49,7 @@ def main() -> int:
         raise SystemExit("missing package template")
     profile_root = package / "profiles"
     if tuple(sorted(p.name for p in profile_root.iterdir() if p.is_dir())) != tuple(sorted(PROFILES)):
-        raise SystemExit("package profile inventory must be exactly primary, forge, bert-verifier, eve")
+        raise SystemExit("package profile inventory must be exactly primary, forge, verifier, eve")
     output.mkdir(parents=True, exist_ok=True)
     archive = output / "hermes-client-handoff.tar.gz"
     staged = output / ".handoff-stage"

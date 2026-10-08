@@ -8,13 +8,13 @@ date: 2026-09-26
 
 ## Authority and roles
 
-Primary is the accountable owner-facing controller and final decision owner. Forge is a bounded maker operating only in isolated worktrees. Bert-Verifier is the first independent exact-head reviewer. Eve is the dependent final formal reviewer of those same frozen bytes. Recon and Art are optional later, task-specific profiles only when recurring needs justify them; they are not initial controllers.
+Primary is the accountable owner-facing controller and final decision owner. Forge is a bounded maker operating only in isolated worktrees. Verifier is the first independent exact-head reviewer. Eve is the dependent final formal reviewer of those same frozen bytes. Recon and Art are optional later, task-specific profiles only when recurring needs justify them; they are not initial controllers.
 
 Native Kanban is workflow authority, the installed timing adapter is evidence authority, and the Gateway dispatcher is the sole launcher. No direct wrapper launch, generic-delegate impersonation, legacy coordinator, cron, or tmux launch is allowed.
 
 ## Native delivery lifecycle
 
-Owner direction is a prerequisite to admission. Bootstrap one blocked root, record and read back exact `notify+wake` and timing evidence, then link all blocked children before root-only admission/release. Forge commits and freezes an exact candidate. Controller verification, then Bert-Verifier, then dependent Eve inspect the same bytes. Dependencies park/resume the root; one bounded remediation may return to Forge. Terminal closeout requires verdict, owner decision and retained evidence.
+Owner direction is a prerequisite to admission. Bootstrap one blocked root, record and read back exact `notify+wake` and timing evidence, then link all blocked children before root-only admission/release. Forge commits and freezes an exact candidate. Controller verification, then Verifier, then dependent Eve inspect the same bytes. Dependencies park/resume the root; one bounded remediation may return to Forge. Terminal closeout requires verdict, owner decision and retained evidence.
 
 ## Boundaries
 

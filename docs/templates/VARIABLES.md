@@ -1,6 +1,6 @@
 # Customization variables
 
-The [schema](customization.schema.json) describes non-secret data, not instructions or permission grants. The [validator](../scripts/validate_customization.py) returns normalized data without modifying caller input, writing personalized files, installing a profile, or echoing owner fields to logs. Example paths and model IDs are explicitly fictional; validation is not proof that a provider model exists or is authenticated.
+The [schema](customization.schema.json) describes non-secret data, not instructions or permission grants. The [validator](../../scripts/validate_customization.py) returns normalized data without modifying caller input, writing personalized files, installing a profile, or echoing owner fields to logs. Example paths and model IDs are explicitly fictional; validation is not proof that a provider model exists or is authenticated.
 
 | Field | Constraint | Responsibility |
 | --- | --- | --- |

@@ -2126,7 +2126,7 @@ def collect_scans(root: Path, deny_terms, errors):
             # The approved intake is the one intentional binary public asset.
             # Its form-field contract is checked by release tests; all other
             # payload files remain text-only for privacy scanning.
-            if rel.as_posix() == "templates/OWNER-INTAKE.pdf":
+            if rel.as_posix() == "docs/OWNER-INTAKE.pdf":
                 continue
             if is_binary(raw):
                 add_entry(errors, "binary_file", "binary/undecodable file", rel.as_posix())

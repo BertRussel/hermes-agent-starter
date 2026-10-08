@@ -25,4 +25,4 @@ Fail closed on malformed verdicts, mismatched heads, unauthorized writes or budg
 Keep review reports and source receipts private unless separately sanitized for publication. Never include credentials or raw private evidence in durable metadata.
 
 ## Sources
-[Verifier contract](../../profiles/bert-verifier/SOUL.md), [lifecycle](11-native-lifecycle.md), [timing](14-timing.md).
+[Verifier contract](../../profiles/verifier/SOUL.md), [lifecycle](11-native-lifecycle.md), [timing](14-timing.md).

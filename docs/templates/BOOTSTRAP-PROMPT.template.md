@@ -264,7 +264,7 @@ Create these native profiles only after checking the installed profile CLI and p
 
 ```text
 forge          → Forge
-bert-verifier  → Verifier
+verifier       → Verifier
 eve            → Eve
 recon          → Recon
 art            → Art

@@ -5,7 +5,7 @@ Commands below are procedures for the specified actor, not permission for a deta
 | Command / operation | Actor | Owning source | Evidence / limitation |
 | --- | --- | --- | --- |
 | `python3 -B -m pytest -q -p no:cacheprovider` | scoped maker/verifier | tests/release | Real source regression, not full release acceptance |
-| `python3 -B scripts/validate_customization.py /absolute/private/customization.json` | owner/operator | scripts/validate_customization.py and templates/customization.schema.json | Two fictional forms, invalid fields, no installation/identity output |
+| `python3 -B scripts/validate_customization.py /absolute/private/customization.json` | owner/operator | scripts/validate_customization.py and docs/templates/customization.schema.json | Two fictional forms, invalid fields, no installation/identity output |
 | `python3 -B scripts/create_brain_os.py /absolute/private/new-vault` | owner/new-vault operator | scripts/create_brain_os.py | Linux no-replace; parent must exist; tests cover race/symlink/interruption/links |
 | `hermes profile install /absolute/extracted/profiles/forge --name forge` | owner/disposable test operator | accepted native hermes_cli/profile_distribution.py | Six native installs exercised; no force/activation/aliases |
 | `hermes profile update forge` | owner/operator | native update_distribution | Same-version preservation only; distribution-owned personalized Soul is unsafe without a reviewed plan |

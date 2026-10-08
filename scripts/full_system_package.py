@@ -20,7 +20,7 @@ except ModuleNotFoundError as error:
     from create_brain_os import create_brain_os
     from public_export import build_public_export, component_inventory, restore_public_export, selected_files
 
-PROFILES = ("owner-agent", "forge", "bert-verifier", "eve", "recon", "art")
+PROFILES = ("owner-agent", "forge", "verifier", "eve", "recon", "art")
 FORBIDDEN_PARTS = {".git", ".env", "auth.json", "sessions", "memories", "cache", "logs", "node_modules", "tests", "__pycache__"}
 CREDENTIAL_PATTERN = re.compile(rb"(?:ghp_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{40,}|sk-[A-Za-z0-9_-]{32,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----)")
 PRIVATE_MARKER = re.compile(rb"(?:/home/[A-Za-z0-9._-]+/|/srv/[A-Za-z0-9._-]+/|SOURCE_BINDINGS|BertBrainBackup|BertBrainOS|skepsy-dev|\bt_[0-9a-f]{8}\b)", re.I)
@@ -151,7 +151,7 @@ from pathlib import Path
 import hashlib, json, os
 from hermes_cli.profile_distribution import install_distribution, DistributionError
 source, home = Path(__import__('sys').argv[1]), Path(os.environ['HOME'])
-roles = ('owner-agent','forge','bert-verifier','eve','recon','art')
+roles = ('owner-agent','forge','verifier','eve','recon','art')
 installed = []
 for role in roles:
  target = install_distribution(str(source / role), name=role, create_alias=False).target_dir

@@ -7,7 +7,7 @@ import json
 import re
 from pathlib import Path
 
-SCHEMA = Path(__file__).resolve().parents[1] / "templates/customization.schema.json"
+SCHEMA = Path(__file__).resolve().parents[1] / "docs/templates/customization.schema.json"
 
 
 def validate_customization(values: dict) -> dict:
